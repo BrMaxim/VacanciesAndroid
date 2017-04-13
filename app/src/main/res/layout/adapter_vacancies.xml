@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:background="?attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/name_vacancies"
+        android:text="Android developer"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorVacancies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/salary"
+        android:text="З/п не указана"
+        android:textStyle="italic"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/descriptions_vacancies"
+        android:maxLines="2"
+        android:text="@string/description_vacancies"
+        android:textColor="@color/colorDescriptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:id="@+id/company_vacancies"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="Google Inc."
+        android:textColor="@color/colorCompany"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+        <TextView
+            android:id="@+id/city"
+            android:text="Минск"
+            android:layout_marginRight="8dp"
+            android:textColor="@color/colorDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/subway"
+            android:text="Петровщина"
+            android:layout_marginRight="8dp"
+            android:textColor="@color/colorDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/date"
+            android:text="12 апреля"
+            android:textColor="@color/colorDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>
