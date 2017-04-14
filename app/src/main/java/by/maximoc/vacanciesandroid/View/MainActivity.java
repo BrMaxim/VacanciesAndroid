@@ -60,7 +60,7 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if(dy > 0) //check for scroll down
+                if (dy > 0)
                 {
                     if(penultimateItemInAdapter()){
                         Log.d("TAG", "Count " + adapter.getItemCount());
