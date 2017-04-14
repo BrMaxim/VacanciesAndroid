@@ -22,7 +22,8 @@ public class VacanciesModelImpl implements VacanciesModel {
     }
 
     @Override
-    public Observable<Vacancies> getVacanciesModel(String keyWord, String location, String sort, int period, Map<String, String> page) {
+    public Observable<Vacancies> getVacanciesModel(String keyWord, String location, String sort,
+                                                   int period, Map<String, String> page) {
         return getApi().getVacancies(keyWord, location, sort, period, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

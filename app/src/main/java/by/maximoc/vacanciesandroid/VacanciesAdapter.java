@@ -14,6 +14,15 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
 
     Vacancies vacancies;
     private int insertPosition = 20;
+    private Listener clickListener;
+
+    public static interface Listener {
+        void onClick(String urlVacancy);
+    }
+
+    public void setClickListener(Listener clickListener) {
+        this.clickListener = clickListener;
+    }
 
     public VacanciesAdapter(Vacancies vacancies) {
         this.vacancies = vacancies;
@@ -57,10 +66,11 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
     public void onBindViewHolder(VacanciesAdapter.ViewHolder holder, int position) {
         final LinearLayout layout = holder.linearLayout;
         holder.nameVacancies.setText(vacancies.getItems().get(position).getName());
-        holder.descriptionVacancies.setText(vacancies.getItems().get(position).getSnippet().getRequirement());
+        holder.descriptionVacancies
+                .setText(new CommonMethod().fromHtml(vacancies.getItems().get(position).getSnippet().getRequirement()));
         holder.companyVacancies.setText(vacancies.getItems().get(position).getEmployer().getName());
         holder.cityVacancies.setText(vacancies.getItems().get(position).getArea().getName());
-        holder.dateVacancies.setText(vacancies.getItems().get(position).getPublishedAt().substring(1, 10));
+        holder.dateVacancies.setText(vacancies.getItems().get(position).getPublishedAt().substring(0, 10));
         if(vacancies.getItems().get(position).getSalary() != null)
         holder.salaryVacancies.setText(createStringSalary(vacancies.getItems().get(position).getSalary()));
 
@@ -71,6 +81,11 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
         }else {
             holder.subwayVacancies.setVisibility(View.GONE);
         }
+
+        layout.setOnClickListener(v -> {
+            if (clickListener != null)
+                clickListener.onClick(vacancies.getItems().get(position).getId());
+        });
     }
 
     private String createStringSalary(Salary salary){

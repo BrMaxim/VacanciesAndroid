@@ -1,5 +1,6 @@
 package by.maximoc.vacanciesandroid.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,6 +45,7 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
     public void showVacancies(Vacancies vacancies) {
         adapter = new VacanciesAdapter(vacancies);
         recyclerView.setAdapter(adapter);
+        adapterClickListener();
         scrollListener();
     }
 
@@ -74,6 +76,14 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
         return (stopScrollListener != layoutManager.findLastCompletelyVisibleItemPosition() &&
                 layoutManager.findLastCompletelyVisibleItemPosition() + Constants.COUNT_PER_PAGE / 3 ==
                         adapter.getItemCount() - Constants.COUNT_PER_PAGE / 3);
+    }
+
+    private void adapterClickListener() {
+        adapter.setClickListener(urlVacancy -> {
+            Intent intent = new Intent(this, VacancyDetailActivity.class);
+            intent.putExtra(Constants.URL_VACANCY, urlVacancy);
+            startActivity(intent);
+        });
     }
 
     @Override

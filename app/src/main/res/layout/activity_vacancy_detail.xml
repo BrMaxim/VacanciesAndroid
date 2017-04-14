@@ -1,11 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="by.maximoc.vacanciesandroid.View.VacancyDetailActivity">
-<TextView
-    android:id="@+id/name_vacancy"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
-</LinearLayout>
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/all_vacancy_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/name_vacancy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Android developer"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/salary_vacancy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="З/п не указана"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="italic" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Город: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/city_vacancy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Минск" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Требуемый опыт: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/experience_vacancy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="1 - 3 года" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Тип зянятости: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/schedule_vacancy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Полный день" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/line_one"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorGray" />
+
+        <TextView
+            android:id="@+id/company_vacancy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_business_black_24dp"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="Google Inc." />
+
+        <TextView
+            android:id="@+id/address_vacancy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_place_black_24dp"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="Адрес не указан" />
+
+        <TextView
+            android:id="@+id/subway_vacancy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_subway_black_24dp"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="Немига"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/line_two"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorGray" />
+
+        <TextView
+            android:id="@+id/descriptions_vacancy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/description_vacancies" />
+
+    </LinearLayout>
+</ScrollView>
+
