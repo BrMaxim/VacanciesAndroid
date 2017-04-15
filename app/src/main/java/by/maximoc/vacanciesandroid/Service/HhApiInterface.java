@@ -21,4 +21,5 @@ public interface HhApiInterface {
                                        @Query("order_by") String sort,
                                        @Query("period") int period,
                                        @QueryMap Map<String, String> page);
+
 }

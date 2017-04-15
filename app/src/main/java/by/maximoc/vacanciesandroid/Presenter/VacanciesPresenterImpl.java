@@ -10,17 +10,16 @@ import java.util.Map;
 
 import by.maximoc.vacanciesandroid.Constants;
 import by.maximoc.vacanciesandroid.GsonVacancies.Vacancies;
-import by.maximoc.vacanciesandroid.View.MainActivityView;
 import by.maximoc.vacanciesandroid.Model.VacanciesModelImpl;
+import by.maximoc.vacanciesandroid.View.MainActivityView;
 import io.reactivex.Observer;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 
 public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> implements VacanciesPresenter {
 
     private VacanciesModelImpl model;
-    final CompositeDisposable composite = new CompositeDisposable();
+    int stopScrollListener;
 
     public VacanciesPresenterImpl(Context context) {
         model = new VacanciesModelImpl(context);
@@ -36,15 +35,11 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
                 .subscribe(new Observer<Vacancies>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        composite.add(d);
+
                     }
 
                     @Override
                     public void onNext(Vacancies vacancies) {
-
-                        if (page.equals("0"))
-                            getView().showVacancies(vacancies);
-                        else
                             getView().addDataToAdapter(vacancies);
                     }
 
@@ -62,9 +57,17 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
 
     }
 
+    @Override
+    public int getStopListener() {
+        return stopScrollListener;
+    }
+
+    @Override
+    public void setStopListener(int findLasVisibleItemPosition) {
+        stopScrollListener = findLasVisibleItemPosition;
+    }
 
     @Override
     public void onStop() {
-        composite.dispose();
     }
 }

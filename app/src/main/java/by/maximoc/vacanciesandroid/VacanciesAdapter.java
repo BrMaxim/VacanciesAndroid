@@ -1,6 +1,7 @@
 package by.maximoc.vacanciesandroid;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,7 @@ import by.maximoc.vacanciesandroid.GsonVacancies.Vacancies;
 public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.ViewHolder> {
 
     Vacancies vacancies;
-    private int insertPosition = 20;
+    private int insertPosition = 0;
     private Listener clickListener;
 
     public static interface Listener {
@@ -30,15 +31,20 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
 
     public void updateAdapter(Vacancies vacancies) {
         int countVacancies = vacancies.getItems().size();
-        for (int i = 0; i < countVacancies; i++)
-            this.vacancies.getItems().add(vacancies.getItems().get(i));
+        if (this.vacancies == null)
+            this.vacancies = vacancies;
+        else {
+            for (int i = 0; i < countVacancies; i++)
+                this.vacancies.getItems().add(vacancies.getItems().get(i));
+        }
+
         notifyItemRangeInserted(insertPosition, insertPosition + countVacancies);
         insertPosition += countVacancies;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nameVacancies, descriptionVacancies, companyVacancies, cityVacancies, subwayVacancies, dateVacancies,
-                salaryVacancies;
+        TextView nameVacancies, descriptionVacancies, companyVacancies, cityVacancies, subwayVacancies,
+                dateVacancies, salaryVacancies;
 
         private LinearLayout linearLayout;
 
@@ -81,7 +87,7 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
         }else {
             holder.subwayVacancies.setVisibility(View.GONE);
         }
-
+        Log.d("TAG", vacancies.getItems().get(position).getUrl());
         layout.setOnClickListener(v -> {
             if (clickListener != null)
                 clickListener.onClick(vacancies.getItems().get(position).getId());
@@ -100,6 +106,9 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
 
     @Override
     public int getItemCount() {
+        if (vacancies != null)
         return vacancies.getItems().size();
+        else
+            return 0;
     }
 }

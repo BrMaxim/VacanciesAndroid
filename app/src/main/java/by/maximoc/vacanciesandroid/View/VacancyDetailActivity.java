@@ -2,6 +2,7 @@ package by.maximoc.vacanciesandroid.View;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -62,14 +63,20 @@ public class VacancyDetailActivity extends MvpActivity<VacancyDetailView, Vacanc
         experienceVacancy.setText(vacancy.getExperience().getName());
         scheduleVacancy.setText(vacancy.getSchedule().getName());
         companyVacancy.setText(vacancy.getEmployer().getName());
-        if (vacancy.getAddress() != null)
+        if (vacancy.getAddress() != null && vacancy.getAddress().getStreet() != null)
             addressVacancy.setText(presenter.getAddressString(vacancy.getAddress()));
-        if (vacancy.getAddress().getMetro() != null && vacancy.getAddress().getMetro().getStationName() != null) {
+        if (vacancy.getAddress() != null &&
+                vacancy.getAddress().getMetro() != null && vacancy.getAddress().getMetro().getStationName() != null) {
             subwayVacancy.setVisibility(View.VISIBLE);
             subwayVacancy.setText(vacancy.getAddress().getMetro().getStationName());
         }
-        if (vacancy.getDescription() != null)
+        if (vacancy.getDescription() != null) {
             descriptionVacancy.setText(new CommonMethod().fromHtml(vacancy.getDescription()));
+        }
+
+        if (vacancy.getKeySkills() != null) {
+            Log.d("TAG", vacancy.getKeySkills().toString());
+        }
 
         allVacancyView.setVisibility(View.VISIBLE);
     }
