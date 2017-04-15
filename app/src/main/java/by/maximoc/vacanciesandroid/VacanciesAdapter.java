@@ -1,6 +1,7 @@
 package by.maximoc.vacanciesandroid;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,16 @@ import by.maximoc.vacanciesandroid.GsonVacancies.Vacancies;
 public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.ViewHolder> {
 
     Vacancies vacancies;
-    private int insertPosition = 20;
+    private int insertPosition = 0;
+    private Listener clickListener;
+
+    public static interface Listener {
+        void onClick(String urlVacancy);
+    }
+
+    public void setClickListener(Listener clickListener) {
+        this.clickListener = clickListener;
+    }
 
     public VacanciesAdapter(Vacancies vacancies) {
         this.vacancies = vacancies;
@@ -21,15 +31,20 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
 
     public void updateAdapter(Vacancies vacancies) {
         int countVacancies = vacancies.getItems().size();
-        for (int i = 0; i < countVacancies; i++)
-            this.vacancies.getItems().add(vacancies.getItems().get(i));
+        if (this.vacancies == null)
+            this.vacancies = vacancies;
+        else {
+            for (int i = 0; i < countVacancies; i++)
+                this.vacancies.getItems().add(vacancies.getItems().get(i));
+        }
+
         notifyItemRangeInserted(insertPosition, insertPosition + countVacancies);
         insertPosition += countVacancies;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nameVacancies, descriptionVacancies, companyVacancies, cityVacancies, subwayVacancies, dateVacancies,
-                salaryVacancies;
+        TextView nameVacancies, descriptionVacancies, companyVacancies, cityVacancies, subwayVacancies,
+                dateVacancies, salaryVacancies;
 
         private LinearLayout linearLayout;
 
@@ -57,10 +72,11 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
     public void onBindViewHolder(VacanciesAdapter.ViewHolder holder, int position) {
         final LinearLayout layout = holder.linearLayout;
         holder.nameVacancies.setText(vacancies.getItems().get(position).getName());
-        holder.descriptionVacancies.setText(vacancies.getItems().get(position).getSnippet().getRequirement());
+        holder.descriptionVacancies
+                .setText(new CommonMethod().fromHtml(vacancies.getItems().get(position).getSnippet().getRequirement()));
         holder.companyVacancies.setText(vacancies.getItems().get(position).getEmployer().getName());
         holder.cityVacancies.setText(vacancies.getItems().get(position).getArea().getName());
-        holder.dateVacancies.setText(vacancies.getItems().get(position).getPublishedAt().substring(1, 10));
+        holder.dateVacancies.setText(vacancies.getItems().get(position).getPublishedAt().substring(0, 10));
         if(vacancies.getItems().get(position).getSalary() != null)
         holder.salaryVacancies.setText(createStringSalary(vacancies.getItems().get(position).getSalary()));
 
@@ -71,6 +87,11 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
         }else {
             holder.subwayVacancies.setVisibility(View.GONE);
         }
+        Log.d("TAG", vacancies.getItems().get(position).getUrl());
+        layout.setOnClickListener(v -> {
+            if (clickListener != null)
+                clickListener.onClick(vacancies.getItems().get(position).getId());
+        });
     }
 
     private String createStringSalary(Salary salary){
@@ -85,6 +106,9 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
 
     @Override
     public int getItemCount() {
+        if (vacancies != null)
         return vacancies.getItems().size();
+        else
+            return 0;
     }
 }

@@ -1,10 +1,10 @@
 package by.maximoc.vacanciesandroid.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 
@@ -14,13 +14,15 @@ import by.maximoc.vacanciesandroid.Presenter.VacanciesPresenter;
 import by.maximoc.vacanciesandroid.Presenter.VacanciesPresenterImpl;
 import by.maximoc.vacanciesandroid.R;
 import by.maximoc.vacanciesandroid.VacanciesAdapter;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresenter> implements MainActivityView {
 
     RecyclerView recyclerView;
     VacanciesAdapter adapter;
     LinearLayoutManager layoutManager;
-    int stopScrollListener = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +32,9 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
-        presenter.getVacancies("0");
+        adapter = new VacanciesAdapter(null);
+        recyclerView.setAdapter(adapter);
+        scrollListener();
     }
 
     @NonNull
@@ -41,39 +44,65 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
     }
 
     @Override
-    public void showVacancies(Vacancies vacancies) {
-        adapter = new VacanciesAdapter(vacancies);
-        recyclerView.setAdapter(adapter);
-        scrollListener();
-    }
-
-    @Override
     public void addDataToAdapter(Vacancies vacancies) {
         adapter.updateAdapter(vacancies);
+        adapterClickListener();
     }
 
     private void scrollListener(){
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        getScrollObservable(recyclerView, 0, layoutManager)
+                .distinctUntilChanged()
+                .subscribe(new Observer<Integer>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if(dy > 0) //check for scroll down
-                {
-                    if(penultimateItemInAdapter()){
-                        Log.d("TAG", "Count " + adapter.getItemCount());
-                        stopScrollListener = layoutManager.findLastCompletelyVisibleItemPosition();
-                        getPresenter().getVacancies(String.valueOf(adapter.getItemCount() / Constants.COUNT_PER_PAGE));
+                    }
+
+                    @Override
+                    public void onNext(Integer integer) {
+                        getPresenter().getVacancies(String.valueOf(integer / Constants.COUNT_PER_PAGE));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    public static Observable<Integer> getScrollObservable(RecyclerView recyclerView,
+                                                          int emptyListCount, LinearLayoutManager layoutManager) {
+        return Observable.create(subscriber -> {
+            final RecyclerView.OnScrollListener sl = new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    if (!subscriber.isDisposed()) {
+                        int position = layoutManager.findLastCompletelyVisibleItemPosition();
+                        int updatePosition = Constants.COUNT_PER_PAGE / 3;
+                        if (position >= updatePosition) {
+                            subscriber.onNext(recyclerView.getAdapter().getItemCount());
+                        }
                     }
                 }
+            };
+            recyclerView.addOnScrollListener(sl);
+            if (recyclerView.getAdapter().getItemCount() == emptyListCount) {
+                subscriber.onNext(recyclerView.getAdapter().getItemCount());
             }
         });
     }
 
-    public boolean penultimateItemInAdapter(){
-        return (stopScrollListener != layoutManager.findLastCompletelyVisibleItemPosition() &&
-                layoutManager.findLastCompletelyVisibleItemPosition() + Constants.COUNT_PER_PAGE / 3 ==
-                        adapter.getItemCount() - Constants.COUNT_PER_PAGE / 3);
+    private void adapterClickListener() {
+        adapter.setClickListener(urlVacancy -> {
+            Intent intent = new Intent(this, VacancyDetailActivity.class);
+            intent.putExtra(Constants.URL_VACANCY, urlVacancy);
+            startActivity(intent);
+        });
     }
 
     @Override
