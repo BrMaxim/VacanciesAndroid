@@ -2,6 +2,7 @@ package by.maximoc.vacanciesandroid.Presenter;
 
 
 import android.content.Context;
+import android.util.Log;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 
@@ -13,13 +14,16 @@ import by.maximoc.vacanciesandroid.GsonVacancies.Vacancies;
 import by.maximoc.vacanciesandroid.Model.VacanciesModelImpl;
 import by.maximoc.vacanciesandroid.View.MainActivityView;
 import io.reactivex.Observer;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+
+import static by.maximoc.vacanciesandroid.Constants.KEY_WORD_VACANCY;
 
 
 public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> implements VacanciesPresenter {
 
     private VacanciesModelImpl model;
-    int stopScrollListener;
+    CompositeDisposable composite = new CompositeDisposable();
 
     public VacanciesPresenterImpl(Context context) {
         model = new VacanciesModelImpl(context);
@@ -31,22 +35,27 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
         countPage.put("per_page", String.valueOf(Constants.COUNT_PER_PAGE));
         countPage.put("page", page);
 
-        model.getVacanciesModel("android", "1002", "relevance", 30, countPage)
+        model.getVacanciesModel(KEY_WORD_VACANCY, "1002", "relevance", 30, countPage)
                 .subscribe(new Observer<Vacancies>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        composite.add(d);
                     }
 
                     @Override
                     public void onNext(Vacancies vacancies) {
-                            getView().addDataToAdapter(vacancies);
+
+                        getView().addDataToAdapter(vacancies);
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.d("TAG", "Error Presenter");
                         getView().showError();
-
+                        Vacancies vacancies = model.getDataOnDb();
+                        if (vacancies.getItems() != null)
+                            getView().addDataToAdapter(vacancies);
+                        composite.dispose();
                     }
 
                     @Override
@@ -58,16 +67,19 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
     }
 
     @Override
-    public int getStopListener() {
-        return stopScrollListener;
-    }
-
-    @Override
-    public void setStopListener(int findLasVisibleItemPosition) {
-        stopScrollListener = findLasVisibleItemPosition;
-    }
-
-    @Override
     public void onStop() {
+        composite.clear();
+    }
+
+    @Override
+    public void onDestroy(Vacancies vacancies) {
+        if (model.isAccessToInternet() == true) {
+            model.writeDataToDb(vacancies);
+        }
+    }
+
+    @Override
+    public boolean isAccessToInternet() {
+        return model.isAccessToInternet();
     }
 }

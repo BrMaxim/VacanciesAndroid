@@ -8,4 +8,6 @@ import io.reactivex.Observable;
 
 public interface VacanciesModel {
     Observable<Vacancies> getVacanciesModel(String keyWord, String location, String sort, int period, Map<String, String> page);
+
+    boolean isAccessToInternet();
 }

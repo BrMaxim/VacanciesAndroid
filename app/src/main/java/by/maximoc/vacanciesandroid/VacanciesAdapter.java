@@ -1,21 +1,30 @@
 package by.maximoc.vacanciesandroid;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import by.maximoc.vacanciesandroid.GsonVacancies.Salary;
 import by.maximoc.vacanciesandroid.GsonVacancies.Vacancies;
 
 public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.ViewHolder> {
 
-    Vacancies vacancies;
+    private Vacancies vacancies;
     private int insertPosition = 0;
     private Listener clickListener;
+
+    public Vacancies getVacancies() {
+        return vacancies;
+    }
+
 
     public static interface Listener {
         void onClick(String urlVacancy);
@@ -76,38 +85,64 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
                 .setText(new CommonMethod().fromHtml(vacancies.getItems().get(position).getSnippet().getRequirement()));
         holder.companyVacancies.setText(vacancies.getItems().get(position).getEmployer().getName());
         holder.cityVacancies.setText(vacancies.getItems().get(position).getArea().getName());
-        holder.dateVacancies.setText(vacancies.getItems().get(position).getPublishedAt().substring(0, 10));
-        if(vacancies.getItems().get(position).getSalary() != null)
-        holder.salaryVacancies.setText(createStringSalary(vacancies.getItems().get(position).getSalary()));
+        holder.dateVacancies.setText(createData(vacancies.getItems().get(position).getPublishedAt()));
+        if (vacancies.getItems().get(position).getSalary() != null)
+            holder.salaryVacancies.setText(createStringSalary(vacancies.getItems().get(position).getSalary()));
 
-        if(vacancies.getItems().get(position).getAddress() != null
-                && vacancies.getItems().get(position).getAddress().getMetro() != null){
+        if (vacancies.getItems().get(position).getAddress() != null
+                && vacancies.getItems().get(position).getAddress().getMetro() != null) {
             holder.subwayVacancies.setVisibility(View.VISIBLE);
             holder.subwayVacancies.setText(vacancies.getItems().get(position).getAddress().getMetro().getStationName());
-        }else {
+        } else {
             holder.subwayVacancies.setVisibility(View.GONE);
         }
-        Log.d("TAG", vacancies.getItems().get(position).getUrl());
+
         layout.setOnClickListener(v -> {
             if (clickListener != null)
                 clickListener.onClick(vacancies.getItems().get(position).getId());
         });
     }
 
-    private String createStringSalary(Salary salary){
+    private String createStringSalary(Salary salary) {
         String salaryStr = "";
-        if(salary.getFrom() != null)
+        if (salary.getFrom() != null)
             salaryStr = "От " + salary.getFrom() + " ";
-        if(salary.getTo() != null)
+        if (salary.getTo() != null)
             salaryStr = salaryStr + "До " + salary.getTo();
         salaryStr = salaryStr + " " + salary.getCurrency();
         return salaryStr;
     }
 
+    private String createData(String dataOldFormat) {
+        String data;
+        String now = new SimpleDateFormat("dd MMMM", Locale.getDefault()).format(new Date());
+        java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        java.text.SimpleDateFormat df2 = new java.text.SimpleDateFormat("dd MMMM", Locale.getDefault());
+
+        try {
+            String dataNewFormat = df2.format(df.parse(dataOldFormat));
+            if (now == dataNewFormat)
+                data = "Сегодня";
+            else {
+                data = dataNewFormat;
+
+                if (data.substring(0, 1).equals("0")) {
+                    data = data.replaceFirst("0", "");
+                }
+
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            data = "";
+        }
+
+        return data;
+    }
+
     @Override
     public int getItemCount() {
         if (vacancies != null)
-        return vacancies.getItems().size();
+            return vacancies.getItems().size();
         else
             return 0;
     }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 
@@ -16,13 +17,15 @@ import by.maximoc.vacanciesandroid.R;
 import by.maximoc.vacanciesandroid.VacanciesAdapter;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresenter> implements MainActivityView {
 
-    RecyclerView recyclerView;
-    VacanciesAdapter adapter;
-    LinearLayoutManager layoutManager;
+    private RecyclerView recyclerView;
+    private VacanciesAdapter adapter;
+    private LinearLayoutManager layoutManager;
+    private CompositeDisposable composite = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,7 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
     @NonNull
     @Override
     public VacanciesPresenter createPresenter() {
-        return new  VacanciesPresenterImpl(this);
+        return new VacanciesPresenterImpl(this);
     }
 
     @Override
@@ -49,13 +52,13 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
         adapterClickListener();
     }
 
-    private void scrollListener(){
+    private void scrollListener() {
         getScrollObservable(recyclerView, 0, layoutManager)
                 .distinctUntilChanged()
                 .subscribe(new Observer<Integer>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        composite.add(d);
                     }
 
                     @Override
@@ -83,7 +86,7 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     if (!subscriber.isDisposed()) {
                         int position = layoutManager.findLastCompletelyVisibleItemPosition();
-                        int updatePosition = Constants.COUNT_PER_PAGE / 3;
+                        int updatePosition = recyclerView.getAdapter().getItemCount() - 1 - Constants.COUNT_PER_PAGE / 3;
                         if (position >= updatePosition) {
                             subscriber.onNext(recyclerView.getAdapter().getItemCount());
                         }
@@ -107,7 +110,18 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
 
     @Override
     public void showError() {
+        if (!presenter.isAccessToInternet())
+            Toast.makeText(this, "Нет доступа к сети", Toast.LENGTH_SHORT).show();
+    }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        composite.dispose();
+        if (getPresenter() != null) {
+            getPresenter().onDestroy(adapter.getVacancies());
+        }
     }
 
     @Override
