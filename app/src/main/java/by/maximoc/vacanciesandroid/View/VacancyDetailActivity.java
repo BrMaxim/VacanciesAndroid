@@ -1,11 +1,14 @@
 package by.maximoc.vacanciesandroid.View;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 
@@ -15,11 +18,14 @@ import by.maximoc.vacanciesandroid.GsonVacancy.Vacancy;
 import by.maximoc.vacanciesandroid.Presenter.VacancyDetailPresenter;
 import by.maximoc.vacanciesandroid.Presenter.VacancyDetailPresenterImpl;
 import by.maximoc.vacanciesandroid.R;
+import ru.suvitruf.flowlayoutexample.view.FlowLayout;
 
 public class VacancyDetailActivity extends MvpActivity<VacancyDetailView, VacancyDetailPresenter> implements VacancyDetailView {
 
     private TextView nameVacancy, salaryVacancy, cityVacancy, experienceVacancy, scheduleVacancy,
             companyVacancy, addressVacancy, subwayVacancy, descriptionVacancy;
+    private FlowLayout flowLayout;
+    private TextView keySkill;
     private String idVacancy;
     private LinearLayout allVacancyView;
 
@@ -38,7 +44,6 @@ public class VacancyDetailActivity extends MvpActivity<VacancyDetailView, Vacanc
         subwayVacancy = (TextView) findViewById(R.id.subway_vacancy);
         descriptionVacancy = (TextView) findViewById(R.id.descriptions_vacancy);
         allVacancyView = (LinearLayout) findViewById(R.id.all_vacancy_view);
-
         allVacancyView.setVisibility(View.GONE);
 
         idVacancy = getIntent().getStringExtra(Constants.URL_VACANCY);
@@ -74,11 +79,31 @@ public class VacancyDetailActivity extends MvpActivity<VacancyDetailView, Vacanc
             descriptionVacancy.setText(new CommonMethod().fromHtml(vacancy.getDescription()));
         }
 
-        if (vacancy.getKeySkills() != null) {
-            Log.d("TAG", vacancy.getKeySkills().toString());
+        if (vacancy.getKeySkills().size() != 0) {
+            keySkill.setVisibility(View.VISIBLE);
+            flowLayout = (FlowLayout) findViewById(R.id.flow_layout);
+
+            for (int i = 0; i < vacancy.getKeySkills().size(); i++) {
+                final TextView skillText = new TextView(this);
+                skillText.setTextSize(14);
+                skillText.setPadding(5, 5, 5, 5);
+                skillText.setTextColor(getResources().getColor(R.color.colorWhite));
+                skillText.setBackgroundResource(R.drawable.rectangle_skills);
+                skillText.setText(vacancy.getKeySkills().get(i).toString().replaceAll("\\{name=|\\}", ""));
+                flowLayout.addView(skillText);
+            }
+            flowLayout.setVisibility(View.VISIBLE);
         }
 
         allVacancyView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showError() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo nInfo = cm.getActiveNetworkInfo();
+        if (nInfo == null)
+            Toast.makeText(this, "Нет доступа к сети", Toast.LENGTH_SHORT).show();
     }
 
     @Override

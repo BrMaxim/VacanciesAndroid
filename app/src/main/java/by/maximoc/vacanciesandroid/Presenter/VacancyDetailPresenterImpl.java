@@ -2,7 +2,6 @@ package by.maximoc.vacanciesandroid.Presenter;
 
 
 import android.content.Context;
-import android.util.Log;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 
@@ -40,7 +39,7 @@ public class VacancyDetailPresenterImpl extends MvpBasePresenter<VacancyDetailVi
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d("TAG", "Error");
+                        getView().showError();
                     }
 
                     @Override

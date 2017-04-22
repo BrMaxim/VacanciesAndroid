@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:t="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -133,6 +134,22 @@
             android:layout_height="wrap_content"
             android:text="@string/description_vacancies" />
 
+        <TextView
+            android:id="@+id/key_skill"
+            android:text="Ключевые навыки"
+            android:visibility="gone"
+            android:layout_marginBottom="6dp"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ru.suvitruf.flowlayoutexample.view.FlowLayout
+            android:id="@+id/flow_layout"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            t:paddingH="@integer/test_padding_h"
+            t:paddingV="@integer/test_padding_v" />
     </LinearLayout>
 </ScrollView>
 

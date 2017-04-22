@@ -5,8 +5,8 @@ import android.text.Spanned;
 
 public class CommonMethod {
     @SuppressWarnings("deprecation")
-    public static Spanned fromHtml(String html2) {
-        String wrapping = html2.replaceAll("\\<li> <p\\>", "<li>");
+    public static Spanned fromHtml(String htmlFromMethod) {
+        String wrapping = htmlFromMethod.replaceAll("\\<li> <p\\>", "<li>");
         String wrapping2 = wrapping.replaceAll("\\</li> <li\\>", "<p>● ");
         String html = wrapping2.replaceAll("\\<ul> <li\\>", "● ");
         Spanned result;
