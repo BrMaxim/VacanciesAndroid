@@ -80,6 +80,7 @@ public class VacancyDetailActivity extends MvpActivity<VacancyDetailView, Vacanc
         }
 
         if (vacancy.getKeySkills().size() != 0) {
+            keySkill = (TextView) findViewById(R.id.key_skill);
             keySkill.setVisibility(View.VISIBLE);
             flowLayout = (FlowLayout) findViewById(R.id.flow_layout);
 
