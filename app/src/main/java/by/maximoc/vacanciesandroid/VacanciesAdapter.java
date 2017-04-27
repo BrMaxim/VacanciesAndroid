@@ -121,7 +121,7 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
 
         try {
             String dataNewFormat = df2.format(df.parse(dataOldFormat));
-            if (now == dataNewFormat)
+            if (now.equals(dataNewFormat))
                 data = "Сегодня";
             else {
                 data = dataNewFormat;
