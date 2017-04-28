@@ -15,7 +15,6 @@ import by.maximoc.vacanciesandroid.Presenter.VacanciesPresenter;
 import by.maximoc.vacanciesandroid.Presenter.VacanciesPresenterImpl;
 import by.maximoc.vacanciesandroid.R;
 import by.maximoc.vacanciesandroid.VacanciesAdapter;
-import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -53,7 +52,7 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
     }
 
     private void scrollListener() {
-        getScrollObservable(recyclerView, 0, layoutManager)
+        new RxScrolling().getScrollObservable(recyclerView, 0, layoutManager)
                 .distinctUntilChanged()
                 .subscribe(new Observer<Integer>() {
                     @Override
@@ -62,8 +61,8 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
                     }
 
                     @Override
-                    public void onNext(Integer integer) {
-                        getPresenter().getVacancies(String.valueOf(integer / Constants.COUNT_PER_PAGE));
+                    public void onNext(Integer page) {
+                        getPresenter().getVacancies(String.valueOf(page));
                     }
 
                     @Override
@@ -78,27 +77,6 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
                 });
     }
 
-    public static Observable<Integer> getScrollObservable(RecyclerView recyclerView,
-                                                          int emptyListCount, LinearLayoutManager layoutManager) {
-        return Observable.create(subscriber -> {
-            final RecyclerView.OnScrollListener sl = new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                    if (!subscriber.isDisposed()) {
-                        int position = layoutManager.findLastCompletelyVisibleItemPosition();
-                        int updatePosition = recyclerView.getAdapter().getItemCount() - 1 - Constants.COUNT_PER_PAGE / 3;
-                        if (position >= updatePosition) {
-                            subscriber.onNext(recyclerView.getAdapter().getItemCount());
-                        }
-                    }
-                }
-            };
-            recyclerView.addOnScrollListener(sl);
-            if (recyclerView.getAdapter().getItemCount() == emptyListCount) {
-                subscriber.onNext(recyclerView.getAdapter().getItemCount());
-            }
-        });
-    }
 
     private void adapterClickListener() {
         adapter.setClickListener(urlVacancy -> {
