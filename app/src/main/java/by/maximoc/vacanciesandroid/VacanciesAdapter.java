@@ -46,9 +46,8 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
             for (int i = 0; i < countVacancies; i++)
                 this.vacancies.getItems().add(vacancies.getItems().get(i));
         }
-
-        notifyItemRangeInserted(insertPosition, insertPosition + countVacancies);
-        insertPosition += countVacancies;
+        notifyItemRangeInserted(insertPosition, insertPosition + vacancies.getItems().size());
+        insertPosition += vacancies.getItems().size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

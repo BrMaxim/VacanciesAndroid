@@ -44,7 +44,6 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
 
                     @Override
                     public void onNext(Vacancies vacancies) {
-
                         getView().addDataToAdapter(vacancies);
                     }
 
