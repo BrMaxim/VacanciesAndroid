@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Вакансии android</string>
     <string name="description_vacancies">Стринговый ресурс. Наши пожелания к знаниям, навыкам и опыту кандидата: Опыт разработки под Android от одного года, уверенные знания платформы Android 4</string>
+    <string name="salary">З/п не указана</string>
 </resources>
