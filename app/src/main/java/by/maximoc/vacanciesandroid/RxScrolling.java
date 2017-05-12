@@ -1,9 +1,8 @@
-package by.maximoc.vacanciesandroid.View;
+package by.maximoc.vacanciesandroid;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import by.maximoc.vacanciesandroid.Constants;
 import io.reactivex.Observable;
 
 

@@ -85,8 +85,11 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
         holder.companyVacancies.setText(vacancies.getItems().get(position).getEmployer().getName());
         holder.cityVacancies.setText(vacancies.getItems().get(position).getArea().getName());
         holder.dateVacancies.setText(createData(vacancies.getItems().get(position).getPublishedAt()));
-        if (vacancies.getItems().get(position).getSalary() != null)
+        if (vacancies.getItems().get(position).getSalary() != null) {
             holder.salaryVacancies.setText(createStringSalary(vacancies.getItems().get(position).getSalary()));
+        } else {
+            holder.salaryVacancies.setText(R.string.salary);
+        }
 
         if (vacancies.getItems().get(position).getAddress() != null
                 && vacancies.getItems().get(position).getAddress().getMetro() != null) {
@@ -128,13 +131,11 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
                 if (data.substring(0, 1).equals("0")) {
                     data = data.replaceFirst("0", "");
                 }
-
             }
         } catch (ParseException e) {
             e.printStackTrace();
             data = "";
         }
-
         return data;
     }
 

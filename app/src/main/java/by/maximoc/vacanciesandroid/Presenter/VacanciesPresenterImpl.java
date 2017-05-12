@@ -2,7 +2,6 @@ package by.maximoc.vacanciesandroid.Presenter;
 
 
 import android.content.Context;
-import android.util.Log;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 
@@ -17,6 +16,7 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
+import static by.maximoc.vacanciesandroid.Constants.KEY_NUM_MINSK;
 import static by.maximoc.vacanciesandroid.Constants.KEY_WORD_VACANCY;
 
 
@@ -35,7 +35,7 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
         countPage.put("per_page", String.valueOf(Constants.COUNT_PER_PAGE));
         countPage.put("page", page);
 
-        model.getVacanciesModel(KEY_WORD_VACANCY, "1002", "relevance", 30, countPage)
+        model.getVacanciesModel(KEY_WORD_VACANCY, KEY_NUM_MINSK, "relevance", 30, countPage)
                 .subscribe(new Observer<Vacancies>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -44,12 +44,12 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
 
                     @Override
                     public void onNext(Vacancies vacancies) {
+                        if (isViewAttached())
                         getView().addDataToAdapter(vacancies);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d("TAG", "Error Presenter");
                         getView().showError();
                         Vacancies vacancies = model.getDataOnDb();
                         if (vacancies.getItems() != null)
@@ -67,12 +67,13 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
 
     @Override
     public void onStop() {
-        composite.clear();
+        if (composite.isDisposed())
+            composite.clear();
     }
 
     @Override
     public void onDestroy(Vacancies vacancies) {
-        if (model.isAccessToInternet() == true) {
+        if (model.isAccessToInternet() == true && vacancies != null) {
             model.writeDataToDb(vacancies);
         }
     }
