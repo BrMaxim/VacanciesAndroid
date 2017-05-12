@@ -14,6 +14,7 @@ import by.maximoc.vacanciesandroid.GsonVacancies.Vacancies;
 import by.maximoc.vacanciesandroid.Presenter.VacanciesPresenter;
 import by.maximoc.vacanciesandroid.Presenter.VacanciesPresenterImpl;
 import by.maximoc.vacanciesandroid.R;
+import by.maximoc.vacanciesandroid.RxScrolling;
 import by.maximoc.vacanciesandroid.VacanciesAdapter;
 import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;

@@ -136,7 +136,6 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
             e.printStackTrace();
             data = "";
         }
-
         return data;
     }
 
