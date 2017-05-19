@@ -2,9 +2,9 @@ package by.maximoc.vacanciesandroid.Model;
 
 import android.content.Context;
 
-import by.maximoc.vacanciesandroid.GsonVacancy.Salary;
-import by.maximoc.vacanciesandroid.GsonVacancy.Address;
-import by.maximoc.vacanciesandroid.GsonVacancy.Vacancy;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Salary;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Address;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Vacancy;
 import by.maximoc.vacanciesandroid.Service.HhApiInterface;
 import by.maximoc.vacanciesandroid.Service.ServiceFactory;
 import io.reactivex.Observable;

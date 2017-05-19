@@ -2,8 +2,8 @@ package by.maximoc.vacanciesandroid.Service;
 
 import java.util.Map;
 
-import by.maximoc.vacanciesandroid.GsonVacancies.Vacancies;
-import by.maximoc.vacanciesandroid.GsonVacancy.Vacancy;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancies.Vacancies;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Vacancy;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

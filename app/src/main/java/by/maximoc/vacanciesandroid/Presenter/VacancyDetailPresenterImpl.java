@@ -5,9 +5,9 @@ import android.content.Context;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 
-import by.maximoc.vacanciesandroid.GsonVacancy.Address;
-import by.maximoc.vacanciesandroid.GsonVacancy.Salary;
-import by.maximoc.vacanciesandroid.GsonVacancy.Vacancy;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Address;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Salary;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Vacancy;
 import by.maximoc.vacanciesandroid.Model.VacancyDetailModelImpl;
 import by.maximoc.vacanciesandroid.View.VacancyDetailView;
 import io.reactivex.Observer;

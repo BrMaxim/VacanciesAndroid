@@ -15,7 +15,7 @@ import by.maximoc.vacanciesandroid.DataBase.Metro;
 import by.maximoc.vacanciesandroid.DataBase.Salary;
 import by.maximoc.vacanciesandroid.DataBase.Snippet;
 import by.maximoc.vacanciesandroid.DataBase.VacanciesDataBase;
-import by.maximoc.vacanciesandroid.GsonVacancies.Vacancies;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancies.Vacancies;
 import by.maximoc.vacanciesandroid.Service.HhApiInterface;
 import by.maximoc.vacanciesandroid.Service.ServiceFactory;
 import io.reactivex.Observable;
@@ -59,11 +59,11 @@ public class VacanciesModelImpl implements VacanciesModel {
         Vacancies vacancies = new Vacancies();
 
         if (realmObject != null) {
-            ArrayList<by.maximoc.vacanciesandroid.GsonVacancies.Item> itemGs = new ArrayList<>();
+            ArrayList<by.maximoc.vacanciesandroid.Gson.GsonVacancies.Item> itemGs = new ArrayList<>();
 
             for (int i = 0; i < realmObject.getItems().size(); i++) {
-                by.maximoc.vacanciesandroid.GsonVacancies.Item item = new by.maximoc.vacanciesandroid.GsonVacancies.Item();
-                by.maximoc.vacanciesandroid.GsonVacancies.Snippet snippetGs = new by.maximoc.vacanciesandroid.GsonVacancies.Snippet();
+                by.maximoc.vacanciesandroid.Gson.GsonVacancies.Item item = new by.maximoc.vacanciesandroid.Gson.GsonVacancies.Item();
+                by.maximoc.vacanciesandroid.Gson.GsonVacancies.Snippet snippetGs = new by.maximoc.vacanciesandroid.Gson.GsonVacancies.Snippet();
                 snippetGs.setRequirement(realmObject.getItems().get(i).getSnippet().getRequirement());
                 item.setSnippet(snippetGs);
 
@@ -73,25 +73,25 @@ public class VacanciesModelImpl implements VacanciesModel {
 
                 item.setPublishedAt(realmObject.getItems().get(i).getPublishedAt());
 
-                by.maximoc.vacanciesandroid.GsonVacancies.Area area = new by.maximoc.vacanciesandroid.GsonVacancies.Area();
+                by.maximoc.vacanciesandroid.Gson.GsonVacancies.Area area = new by.maximoc.vacanciesandroid.Gson.GsonVacancies.Area();
                 area.setName(realmObject.getItems().get(i).getArea().getName());
                 item.setArea(area);
 
-                by.maximoc.vacanciesandroid.GsonVacancies.Employer employer = new by.maximoc.vacanciesandroid.GsonVacancies.Employer();
+                by.maximoc.vacanciesandroid.Gson.GsonVacancies.Employer employer = new by.maximoc.vacanciesandroid.Gson.GsonVacancies.Employer();
                 employer.setName(realmObject.getItems().get(i).getEmployer().getName());
                 item.setEmployer(employer);
 
                 if (realmObject.getItems().get(i).getAddress() != null
                         && realmObject.getItems().get(i).getAddress().getMetro() != null) {
-                    by.maximoc.vacanciesandroid.GsonVacancies.Address address = new by.maximoc.vacanciesandroid.GsonVacancies.Address();
-                    by.maximoc.vacanciesandroid.GsonVacancies.Metro metro = new by.maximoc.vacanciesandroid.GsonVacancies.Metro();
+                    by.maximoc.vacanciesandroid.Gson.GsonVacancies.Address address = new by.maximoc.vacanciesandroid.Gson.GsonVacancies.Address();
+                    by.maximoc.vacanciesandroid.Gson.GsonVacancies.Metro metro = new by.maximoc.vacanciesandroid.Gson.GsonVacancies.Metro();
                     metro.setStationName(realmObject.getItems().get(i).getAddress().getMetro().getStationName());
                     address.setMetro(metro);
                     item.setAddress(address);
                 }
 
                 if (realmObject.getItems().get(i).getSalary() != null) {
-                    by.maximoc.vacanciesandroid.GsonVacancies.Salary salary = new by.maximoc.vacanciesandroid.GsonVacancies.Salary();
+                    by.maximoc.vacanciesandroid.Gson.GsonVacancies.Salary salary = new by.maximoc.vacanciesandroid.Gson.GsonVacancies.Salary();
                     salary.setCurrency(realmObject.getItems().get(i).getSalary().getCurrency());
                     if (realmObject.getItems().get(i).getSalary().getFrom() != null)
                         salary.setFrom(realmObject.getItems().get(i).getSalary().getFrom());

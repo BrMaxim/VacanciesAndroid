@@ -2,8 +2,8 @@ package by.maximoc.vacanciesandroid.Presenter;
 
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 
-import by.maximoc.vacanciesandroid.GsonVacancy.Address;
-import by.maximoc.vacanciesandroid.GsonVacancy.Salary;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Address;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Salary;
 import by.maximoc.vacanciesandroid.View.VacancyDetailView;
 
 public interface VacancyDetailPresenter extends MvpPresenter<VacancyDetailView> {

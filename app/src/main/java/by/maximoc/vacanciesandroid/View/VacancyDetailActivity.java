@@ -14,7 +14,7 @@ import com.hannesdorfmann.mosby.mvp.MvpActivity;
 
 import by.maximoc.vacanciesandroid.CommonMethod;
 import by.maximoc.vacanciesandroid.Constants;
-import by.maximoc.vacanciesandroid.GsonVacancy.Vacancy;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Vacancy;
 import by.maximoc.vacanciesandroid.Presenter.VacancyDetailPresenter;
 import by.maximoc.vacanciesandroid.Presenter.VacancyDetailPresenterImpl;
 import by.maximoc.vacanciesandroid.R;
