@@ -10,12 +10,12 @@ import android.widget.Toast;
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 
 import by.maximoc.vacanciesandroid.Constants;
-import by.maximoc.vacanciesandroid.GsonVacancies.Vacancies;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancies.Vacancies;
 import by.maximoc.vacanciesandroid.Presenter.VacanciesPresenter;
 import by.maximoc.vacanciesandroid.Presenter.VacanciesPresenterImpl;
 import by.maximoc.vacanciesandroid.R;
 import by.maximoc.vacanciesandroid.RxScrolling;
-import by.maximoc.vacanciesandroid.VacanciesAdapter;
+import by.maximoc.vacanciesandroid.Adapter.VacanciesAdapter;
 import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;

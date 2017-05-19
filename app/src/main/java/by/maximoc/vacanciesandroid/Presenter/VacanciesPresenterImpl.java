@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import by.maximoc.vacanciesandroid.Constants;
-import by.maximoc.vacanciesandroid.GsonVacancies.Vacancies;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancies.Vacancies;
 import by.maximoc.vacanciesandroid.Model.VacanciesModelImpl;
 import by.maximoc.vacanciesandroid.View.MainActivityView;
 import io.reactivex.Observer;
@@ -23,7 +23,7 @@ import static by.maximoc.vacanciesandroid.Constants.KEY_WORD_VACANCY;
 public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> implements VacanciesPresenter {
 
     private VacanciesModelImpl model;
-    CompositeDisposable composite = new CompositeDisposable();
+    private CompositeDisposable composite = new CompositeDisposable();
 
     public VacanciesPresenterImpl(Context context) {
         model = new VacanciesModelImpl(context);
@@ -45,7 +45,7 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
                     @Override
                     public void onNext(Vacancies vacancies) {
                         if (isViewAttached())
-                        getView().addDataToAdapter(vacancies);
+                            getView().addDataToAdapter(vacancies);
                     }
 
                     @Override
@@ -67,7 +67,7 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
 
     @Override
     public void onStop() {
-        if (composite.isDisposed())
+        if (!composite.isDisposed())
             composite.clear();
     }
 

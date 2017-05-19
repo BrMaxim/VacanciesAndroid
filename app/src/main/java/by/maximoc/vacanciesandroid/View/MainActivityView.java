@@ -2,7 +2,7 @@ package by.maximoc.vacanciesandroid.View;
 
 import com.hannesdorfmann.mosby.mvp.MvpView;
 
-import by.maximoc.vacanciesandroid.GsonVacancies.Vacancies;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancies.Vacancies;
 
 public interface MainActivityView extends MvpView {
     void addDataToAdapter(Vacancies vacancies);
