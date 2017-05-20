@@ -54,6 +54,7 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
                         Vacancies vacancies = model.getDataOnDb();
                         if (vacancies.getItems() != null)
                             getView().addDataToAdapter(vacancies);
+                        composite.dispose();
                     }
 
                     @Override
