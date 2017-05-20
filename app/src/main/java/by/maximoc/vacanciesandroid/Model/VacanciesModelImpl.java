@@ -26,11 +26,12 @@ import io.realm.Realm;
 public class VacanciesModelImpl implements VacanciesModel {
     private Context context;
     private Realm realm;
-    private HhApiInterface getApi(){
+
+    private HhApiInterface getApi() {
         return new ServiceFactory().getHhApiInterface();
     }
 
-    public VacanciesModelImpl(Context context){
+    public VacanciesModelImpl(Context context) {
         this.context = context;
     }
 
@@ -51,7 +52,6 @@ public class VacanciesModelImpl implements VacanciesModel {
         return activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
     }
-
 
     public Vacancies getDataOnDb() {
         realm = Realm.getDefaultInstance();
@@ -98,7 +98,6 @@ public class VacanciesModelImpl implements VacanciesModel {
                     if (realmObject.getItems().get(i).getSalary().getTo() != null)
                         salary.setTo(realmObject.getItems().get(i).getSalary().getTo());
                 }
-
                 itemGs.add(item);
             }
             vacancies.setItems(itemGs);
@@ -108,48 +107,48 @@ public class VacanciesModelImpl implements VacanciesModel {
 
     public void writeDataToDb(Vacancies vacancies) {
         realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        realm.deleteAll();
-        VacanciesDataBase db = realm.createObject(VacanciesDataBase.class);
+        realm.executeTransactionAsync(realm1 -> {
+            realm1.deleteAll();
+            VacanciesDataBase db = realm1.createObject(VacanciesDataBase.class);
 
-        for (int i = 0; i < vacancies.getItems().size(); i++) {
-            Item item = realm.createObject(Item.class);
-            item.setName(vacancies.getItems().get(i).getName());
-            item.setPublishedAt(vacancies.getItems().get(i).getPublishedAt());
-            item.setId(vacancies.getItems().get(i).getId());
+            for (int i = 0; i < vacancies.getItems().size(); i++) {
+                Item item = realm1.createObject(Item.class);
+                item.setName(vacancies.getItems().get(i).getName());
+                item.setPublishedAt(vacancies.getItems().get(i).getPublishedAt());
+                item.setId(vacancies.getItems().get(i).getId());
 
-            Snippet snippetDb = realm.createObject(Snippet.class);
-            snippetDb.setRequirement(vacancies.getItems().get(i).getSnippet().getRequirement());
-            item.setSnippet(snippetDb);
+                Snippet snippetDb = realm1.createObject(Snippet.class);
+                snippetDb.setRequirement(vacancies.getItems().get(i).getSnippet().getRequirement());
+                item.setSnippet(snippetDb);
 
-            if (vacancies.getItems().get(i).getAddress() != null
-                    && vacancies.getItems().get(i).getAddress().getMetro() != null) {
-                Metro metroDb = realm.createObject(Metro.class);
-                metroDb.setStationName(vacancies.getItems().get(i).getAddress().getMetro().getStationName());
-                Address addressDb = realm.createObject(Address.class);
-                addressDb.setMetro(metroDb);
-                item.setAddress(addressDb);
+                if (vacancies.getItems().get(i).getAddress() != null
+                        && vacancies.getItems().get(i).getAddress().getMetro() != null) {
+                    Metro metroDb = realm1.createObject(Metro.class);
+                    metroDb.setStationName(vacancies.getItems().get(i).getAddress().getMetro().getStationName());
+                    Address addressDb = realm1.createObject(Address.class);
+                    addressDb.setMetro(metroDb);
+                    item.setAddress(addressDb);
+                }
+
+                Area areaDb = realm1.createObject(Area.class);
+                areaDb.setName(vacancies.getItems().get(i).getArea().getName());
+                item.setArea(areaDb);
+
+                Employer employerDb = realm1.createObject(Employer.class);
+                employerDb.setName(vacancies.getItems().get(i).getEmployer().getName());
+                item.setEmployer(employerDb);
+
+                if (vacancies.getItems().get(i).getSalary() != null) {
+                    Salary salaryDb = realm1.createObject(Salary.class);
+                    salaryDb.setCurrency(vacancies.getItems().get(i).getSalary().getCurrency());
+                    if (vacancies.getItems().get(i).getSalary().getFrom() != null)
+                        salaryDb.setFrom(vacancies.getItems().get(i).getSalary().getFrom());
+                    if (vacancies.getItems().get(i).getSalary().getTo() != null)
+                        salaryDb.setTo(vacancies.getItems().get(i).getSalary().getTo().toString());
+                    item.setSalary(salaryDb);
+                }
+                db.getItems().add(item);
             }
-
-            Area areaDb = realm.createObject(Area.class);
-            areaDb.setName(vacancies.getItems().get(i).getArea().getName());
-            item.setArea(areaDb);
-
-            Employer employerDb = realm.createObject(Employer.class);
-            employerDb.setName(vacancies.getItems().get(i).getEmployer().getName());
-            item.setEmployer(employerDb);
-
-            if (vacancies.getItems().get(i).getSalary() != null) {
-                Salary salaryDb = realm.createObject(Salary.class);
-                salaryDb.setCurrency(vacancies.getItems().get(i).getSalary().getCurrency());
-                if (vacancies.getItems().get(i).getSalary().getFrom() != null)
-                    salaryDb.setFrom(vacancies.getItems().get(i).getSalary().getFrom());
-                if (vacancies.getItems().get(i).getSalary().getTo() != null)
-                    salaryDb.setTo(vacancies.getItems().get(i).getSalary().getTo().toString());
-                item.setSalary(salaryDb);
-            }
-            db.getItems().add(item);
-        }
-        realm.commitTransaction();
+        });
     }
 }
