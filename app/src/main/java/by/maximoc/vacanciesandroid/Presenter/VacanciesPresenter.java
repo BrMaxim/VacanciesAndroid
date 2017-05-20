@@ -8,8 +8,8 @@ import by.maximoc.vacanciesandroid.View.MainActivityView;
 public interface VacanciesPresenter extends MvpPresenter<MainActivityView> {
     void getVacancies(String page);
     void onStop();
-
     void onDestroy(Vacancies vacancies);
-
     boolean isAccessToInternet();
+
+    void elementClick(String urlVacancy);
 }

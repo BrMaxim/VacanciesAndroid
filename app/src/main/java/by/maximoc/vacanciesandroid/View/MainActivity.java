@@ -9,13 +9,13 @@ import android.widget.Toast;
 
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 
+import by.maximoc.vacanciesandroid.Adapter.VacanciesAdapter;
 import by.maximoc.vacanciesandroid.Constants;
 import by.maximoc.vacanciesandroid.Gson.GsonVacancies.Vacancies;
 import by.maximoc.vacanciesandroid.Presenter.VacanciesPresenter;
 import by.maximoc.vacanciesandroid.Presenter.VacanciesPresenterImpl;
 import by.maximoc.vacanciesandroid.R;
 import by.maximoc.vacanciesandroid.RxScrolling;
-import by.maximoc.vacanciesandroid.Adapter.VacanciesAdapter;
 import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -81,10 +81,15 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
 
     private void adapterClickListener() {
         adapter.setClickListener(urlVacancy -> {
-            Intent intent = new Intent(this, VacancyDetailActivity.class);
-            intent.putExtra(Constants.URL_VACANCY, urlVacancy);
-            startActivity(intent);
+            presenter.elementClick(urlVacancy);
         });
+    }
+
+    @Override
+    public void startDetailActivity(String urlVacancy) {
+        Intent intent = new Intent(this, VacancyDetailActivity.class);
+        intent.putExtra(Constants.URL_VACANCY, urlVacancy);
+        startActivity(intent);
     }
 
     @Override
@@ -92,7 +97,6 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
         if (!presenter.isAccessToInternet())
             Toast.makeText(this, "Нет доступа к сети", Toast.LENGTH_SHORT).show();
     }
-
 
     @Override
     protected void onDestroy() {

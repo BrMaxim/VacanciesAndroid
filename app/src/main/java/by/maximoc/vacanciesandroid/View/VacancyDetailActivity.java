@@ -1,8 +1,5 @@
 package by.maximoc.vacanciesandroid.View;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -14,11 +11,11 @@ import com.hannesdorfmann.mosby.mvp.MvpActivity;
 
 import by.maximoc.vacanciesandroid.CommonMethod;
 import by.maximoc.vacanciesandroid.Constants;
+import by.maximoc.vacanciesandroid.FlowLayout;
 import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Vacancy;
 import by.maximoc.vacanciesandroid.Presenter.VacancyDetailPresenter;
 import by.maximoc.vacanciesandroid.Presenter.VacancyDetailPresenterImpl;
 import by.maximoc.vacanciesandroid.R;
-import ru.suvitruf.flowlayoutexample.view.FlowLayout;
 
 public class VacancyDetailActivity extends MvpActivity<VacancyDetailView, VacancyDetailPresenter> implements VacancyDetailView {
 
@@ -95,16 +92,12 @@ public class VacancyDetailActivity extends MvpActivity<VacancyDetailView, Vacanc
             }
             flowLayout.setVisibility(View.VISIBLE);
         }
-
         allVacancyView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showError() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo nInfo = cm.getActiveNetworkInfo();
-        if (nInfo == null)
-            Toast.makeText(this, "Нет доступа к сети", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Нет доступа к сети", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -54,7 +54,6 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
                         Vacancies vacancies = model.getDataOnDb();
                         if (vacancies.getItems() != null)
                             getView().addDataToAdapter(vacancies);
-                        composite.dispose();
                     }
 
                     @Override
@@ -73,13 +72,21 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
 
     @Override
     public void onDestroy(Vacancies vacancies) {
-        if (model.isAccessToInternet() == true && vacancies != null) {
+        if (model.isAccessToInternet() && vacancies != null) {
             model.writeDataToDb(vacancies);
         }
+        if (!composite.isDisposed())
+            composite.dispose();
     }
 
     @Override
     public boolean isAccessToInternet() {
         return model.isAccessToInternet();
+    }
+
+    @Override
+    public void elementClick(String urlVacancy) {
+        if (isViewAttached())
+            getView().startDetailActivity(urlVacancy);
     }
 }

@@ -7,8 +7,9 @@ import io.reactivex.Observable;
 
 public interface VacancyDetailModel {
     Observable<Vacancy> getVacancyDetailModel(String vacancyId);
-
     String createStringSalary(Salary salary);
-
     String createStringAddress(Address address);
+
+    boolean isAccessToInternet();
+
 }

@@ -1,12 +1,10 @@
-package ru.suvitruf.flowlayoutexample.view;
+package by.maximoc.vacanciesandroid;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-
-import by.maximoc.vacanciesandroid.R;
 
 public class FlowLayout extends ViewGroup {
     // padding bettwen elements
