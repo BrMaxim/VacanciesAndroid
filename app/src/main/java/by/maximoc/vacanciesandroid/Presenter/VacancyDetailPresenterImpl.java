@@ -39,7 +39,8 @@ public class VacancyDetailPresenterImpl extends MvpBasePresenter<VacancyDetailVi
 
                     @Override
                     public void onError(Throwable e) {
-                        getView().showError();
+                        if (!model.isAccessToInternet())
+                            getView().showError();
                     }
 
                     @Override

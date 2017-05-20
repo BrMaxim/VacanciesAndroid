@@ -1,9 +1,11 @@
 package by.maximoc.vacanciesandroid.Model;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
-import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Salary;
 import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Address;
+import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Salary;
 import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Vacancy;
 import by.maximoc.vacanciesandroid.Service.HhApiInterface;
 import by.maximoc.vacanciesandroid.Service.ServiceFactory;
@@ -27,6 +29,16 @@ public class VacancyDetailModelImpl implements VacancyDetailModel {
         return getApi().getVacancyDetail(vacancyId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public boolean isAccessToInternet() {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        return activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
     }
 
     @Override
