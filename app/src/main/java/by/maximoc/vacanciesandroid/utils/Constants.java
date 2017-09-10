@@ -1,4 +1,4 @@
-package by.maximoc.vacanciesandroid;
+package by.maximoc.vacanciesandroid.utils;
 
 public class Constants {
     public static final int COUNT_PER_PAGE = 20;

@@ -3,7 +3,9 @@ package by.maximoc.vacanciesandroid.Gson.GsonVacancies;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Area {
+import io.realm.RealmObject;
+
+public class Area extends RealmObject {
 
     @SerializedName("url")
     @Expose

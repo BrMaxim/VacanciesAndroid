@@ -1,4 +1,4 @@
-package by.maximoc.vacanciesandroid.Adapter;
+package by.maximoc.vacanciesandroid.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import by.maximoc.vacanciesandroid.CommonMethod;
-import by.maximoc.vacanciesandroid.DateFormat;
+import by.maximoc.vacanciesandroid.utils.CommonMethod;
+import by.maximoc.vacanciesandroid.utils.DateFormat;
 import by.maximoc.vacanciesandroid.Gson.GsonVacancies.Salary;
 import by.maximoc.vacanciesandroid.Gson.GsonVacancies.Vacancies;
 import by.maximoc.vacanciesandroid.R;
@@ -101,14 +101,13 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
 
     private String createStringSalary(Salary salary) {
         String salaryStr = "";
-        if (salary.getFrom() != null)
+        if (salary.getFrom() != 0)
             salaryStr = "От " + salary.getFrom() + " ";
-        if (salary.getTo() != null)
+        if (salary.getTo() != 0)
             salaryStr = salaryStr + "До " + salary.getTo();
         salaryStr = salaryStr + " " + salary.getCurrency();
         return salaryStr;
     }
-
 
     @Override
     public int getItemCount() {

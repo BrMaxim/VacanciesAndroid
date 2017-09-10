@@ -3,7 +3,9 @@ package by.maximoc.vacanciesandroid.Gson.GsonVacancies;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Department {
+import io.realm.RealmObject;
+
+public class Department extends RealmObject {
 
     @SerializedName("id")
     @Expose

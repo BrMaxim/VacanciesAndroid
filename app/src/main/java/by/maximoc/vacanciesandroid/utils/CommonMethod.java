@@ -1,4 +1,4 @@
-package by.maximoc.vacanciesandroid;
+package by.maximoc.vacanciesandroid.utils;
 
 import android.text.Html;
 import android.text.Spanned;

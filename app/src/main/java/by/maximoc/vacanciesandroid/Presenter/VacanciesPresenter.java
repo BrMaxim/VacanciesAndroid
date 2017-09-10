@@ -3,7 +3,7 @@ package by.maximoc.vacanciesandroid.Presenter;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 
 import by.maximoc.vacanciesandroid.Gson.GsonVacancies.Vacancies;
-import by.maximoc.vacanciesandroid.View.MainActivityView;
+import by.maximoc.vacanciesandroid.ui.MainActivityView;
 
 public interface VacanciesPresenter extends MvpPresenter<MainActivityView> {
     void getVacancies(String page);
@@ -11,5 +11,5 @@ public interface VacanciesPresenter extends MvpPresenter<MainActivityView> {
     void onDestroy(Vacancies vacancies);
     boolean isAccessToInternet();
 
-    void elementClick(String urlVacancy);
+    void itemClick(String urlVacancy);
 }

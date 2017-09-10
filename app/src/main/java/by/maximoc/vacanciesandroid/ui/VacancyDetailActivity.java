@@ -1,4 +1,4 @@
-package by.maximoc.vacanciesandroid.View;
+package by.maximoc.vacanciesandroid.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,9 +9,9 @@ import android.widget.Toast;
 
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 
-import by.maximoc.vacanciesandroid.CommonMethod;
-import by.maximoc.vacanciesandroid.Constants;
-import by.maximoc.vacanciesandroid.FlowLayout;
+import by.maximoc.vacanciesandroid.utils.CommonMethod;
+import by.maximoc.vacanciesandroid.utils.Constants;
+import by.maximoc.vacanciesandroid.utils.FlowLayout;
 import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Vacancy;
 import by.maximoc.vacanciesandroid.Presenter.VacancyDetailPresenter;
 import by.maximoc.vacanciesandroid.Presenter.VacancyDetailPresenterImpl;

@@ -3,28 +3,27 @@ package by.maximoc.vacanciesandroid.Gson.GsonVacancies;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import io.realm.RealmList;
+import io.realm.RealmObject;
 
-public class Vacancies {
+public class Vacancies extends RealmObject {
 
     @SerializedName("per_page")
     @Expose
-    private Integer perPage;
+    private int perPage;
     @SerializedName("items")
     @Expose
-    private List<Item> items = null;
+    private RealmList<Item> items = null;
     @SerializedName("page")
     @Expose
-    private Integer page;
+    private int page;
     @SerializedName("pages")
     @Expose
-    private Integer pages;
+    private int pages;
     @SerializedName("found")
     @Expose
-    private Integer found;
-    @SerializedName("clusters")
-    @Expose
-    private Object clusters;
+    private int found;
+
 
     public Integer getPerPage() {
         return perPage;
@@ -34,11 +33,11 @@ public class Vacancies {
         this.perPage = perPage;
     }
 
-    public List<Item> getItems() {
+    public RealmList<Item> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(RealmList<Item> items) {
         this.items = items;
     }
 
@@ -64,14 +63,6 @@ public class Vacancies {
 
     public void setFound(Integer found) {
         this.found = found;
-    }
-
-    public Object getClusters() {
-        return clusters;
-    }
-
-    public void setClusters(Object clusters) {
-        this.clusters = clusters;
     }
 
 }

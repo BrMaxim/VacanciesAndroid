@@ -143,7 +143,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <by.maximoc.vacanciesandroid.FlowLayout
+        <by.maximoc.vacanciesandroid.utils.FlowLayout
             android:id="@+id/flow_layout"
             android:visibility="gone"
             android:layout_width="wrap_content"

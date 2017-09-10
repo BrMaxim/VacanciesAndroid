@@ -1,4 +1,4 @@
-package by.maximoc.vacanciesandroid;
+package by.maximoc.vacanciesandroid.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

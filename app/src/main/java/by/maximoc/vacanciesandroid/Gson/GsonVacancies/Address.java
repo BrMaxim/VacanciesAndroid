@@ -3,9 +3,10 @@ package by.maximoc.vacanciesandroid.Gson.GsonVacancies;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import io.realm.RealmList;
+import io.realm.RealmObject;
 
-public class Address {
+public class Address extends RealmObject {
 
     @SerializedName("building")
     @Expose
@@ -13,27 +14,21 @@ public class Address {
     @SerializedName("city")
     @Expose
     private String city;
-    @SerializedName("description")
-    @Expose
-    private Object description;
     @SerializedName("metro")
     @Expose
     private Metro metro;
     @SerializedName("metro_stations")
     @Expose
-    private List<MetroStation> metroStations = null;
-    @SerializedName("raw")
-    @Expose
-    private Object raw;
+    private RealmList<MetroStation> metroStations = null;
     @SerializedName("street")
     @Expose
     private String street;
     @SerializedName("lat")
     @Expose
-    private Float lat;
+    private float lat;
     @SerializedName("lng")
     @Expose
-    private Float lng;
+    private float lng;
     @SerializedName("id")
     @Expose
     private String id;
@@ -54,14 +49,6 @@ public class Address {
         this.city = city;
     }
 
-    public Object getDescription() {
-        return description;
-    }
-
-    public void setDescription(Object description) {
-        this.description = description;
-    }
-
     public Metro getMetro() {
         return metro;
     }
@@ -70,20 +57,12 @@ public class Address {
         this.metro = metro;
     }
 
-    public List<MetroStation> getMetroStations() {
+    public RealmList<MetroStation> getMetroStations() {
         return metroStations;
     }
 
-    public void setMetroStations(List<MetroStation> metroStations) {
+    public void setMetroStations(RealmList<MetroStation> metroStations) {
         this.metroStations = metroStations;
-    }
-
-    public Object getRaw() {
-        return raw;
-    }
-
-    public void setRaw(Object raw) {
-        this.raw = raw;
     }
 
     public String getStreet() {

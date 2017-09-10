@@ -1,4 +1,4 @@
-package by.maximoc.vacanciesandroid.View;
+package by.maximoc.vacanciesandroid.ui;
 
 import com.hannesdorfmann.mosby.mvp.MvpView;
 

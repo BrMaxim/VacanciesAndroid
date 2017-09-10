@@ -8,16 +8,14 @@ import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import java.util.HashMap;
 import java.util.Map;
 
-import by.maximoc.vacanciesandroid.Constants;
 import by.maximoc.vacanciesandroid.Gson.GsonVacancies.Vacancies;
 import by.maximoc.vacanciesandroid.Model.VacanciesModelImpl;
-import by.maximoc.vacanciesandroid.View.MainActivityView;
-import io.reactivex.Observer;
+import by.maximoc.vacanciesandroid.ui.MainActivityView;
+import by.maximoc.vacanciesandroid.utils.Constants;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 
-import static by.maximoc.vacanciesandroid.Constants.KEY_NUM_MINSK;
-import static by.maximoc.vacanciesandroid.Constants.KEY_WORD_VACANCY;
+import static by.maximoc.vacanciesandroid.utils.Constants.KEY_NUM_MINSK;
+import static by.maximoc.vacanciesandroid.utils.Constants.KEY_WORD_VACANCY;
 
 
 public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> implements VacanciesPresenter {
@@ -36,33 +34,9 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
         countPage.put("page", page);
 
         model.getVacanciesModel(KEY_WORD_VACANCY, KEY_NUM_MINSK, "relevance", 30, countPage)
-                .subscribe(new Observer<Vacancies>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        composite.add(d);
-                    }
-
-                    @Override
-                    public void onNext(Vacancies vacancies) {
-                        if (isViewAttached())
-                            getView().addDataToAdapter(vacancies);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        getView().showError();
-                        Vacancies vacancies = model.getDataOnDb();
-                        if (vacancies.getItems() != null)
-                            getView().addDataToAdapter(vacancies);
-                        composite.dispose();
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-
+                .subscribe(vacancies -> getView().addDataToAdapter(vacancies),
+                        throwable -> getView().showError(), () -> {
+                        }, disposable -> composite.add(disposable));
     }
 
     @Override
@@ -74,7 +48,7 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
     @Override
     public void onDestroy(Vacancies vacancies) {
         if (model.isAccessToInternet() && vacancies != null) {
-            model.writeDataToDb(vacancies);
+            model.setVacanciesToDb(vacancies);
         }
         if (!composite.isDisposed())
             composite.dispose();
@@ -86,7 +60,7 @@ public class VacanciesPresenterImpl extends MvpBasePresenter<MainActivityView> i
     }
 
     @Override
-    public void elementClick(String urlVacancy) {
+    public void itemClick(String urlVacancy) {
         if (isViewAttached())
             getView().startDetailActivity(urlVacancy);
     }

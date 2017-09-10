@@ -7,12 +7,9 @@ import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 
 import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Address;
 import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Salary;
-import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Vacancy;
 import by.maximoc.vacanciesandroid.Model.VacancyDetailModelImpl;
-import by.maximoc.vacanciesandroid.View.VacancyDetailView;
-import io.reactivex.Observer;
+import by.maximoc.vacanciesandroid.ui.VacancyDetailView;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 
 public class VacancyDetailPresenterImpl extends MvpBasePresenter<VacancyDetailView> implements VacancyDetailPresenter {
 
@@ -25,29 +22,14 @@ public class VacancyDetailPresenterImpl extends MvpBasePresenter<VacancyDetailVi
 
     @Override
     public void getDetailInfo(String idVacancy) {
+
         model.getVacancyDetailModel(idVacancy)
-                .subscribe(new Observer<Vacancy>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        composite.add(d);
-                    }
-
-                    @Override
-                    public void onNext(Vacancy vacancy) {
-                        getView().showDetail(vacancy);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (!model.isAccessToInternet())
-                            getView().showError();
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+                .subscribe(vacancy -> getView().showDetail(vacancy),
+                        throwable -> {
+                            if (!model.isAccessToInternet())
+                                getView().showError();
+                        }, () -> {
+                        }, disposable -> composite.add(disposable));
     }
 
     @Override

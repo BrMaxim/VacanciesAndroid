@@ -3,31 +3,33 @@ package by.maximoc.vacanciesandroid.Gson.GsonVacancies;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Salary {
+import io.realm.RealmObject;
+
+public class Salary extends RealmObject {
 
     @SerializedName("to")
     @Expose
-    private Object to;
+    private int to;
     @SerializedName("from")
     @Expose
-    private Integer from;
+    private int from;
     @SerializedName("currency")
     @Expose
     private String currency;
 
-    public Object getTo() {
+    public int getTo() {
         return to;
     }
 
-    public void setTo(Object to) {
+    public void setTo(int to) {
         this.to = to;
     }
 
-    public Integer getFrom() {
+    public int getFrom() {
         return from;
     }
 
-    public void setFrom(Integer from) {
+    public void setFrom(int from) {
         this.from = from;
     }
 

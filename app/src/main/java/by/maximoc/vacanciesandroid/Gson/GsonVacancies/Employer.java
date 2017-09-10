@@ -3,7 +3,9 @@ package by.maximoc.vacanciesandroid.Gson.GsonVacancies;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Employer {
+import io.realm.RealmObject;
+
+public class Employer extends RealmObject {
 
     @SerializedName("logo_urls")
     @Expose
@@ -22,7 +24,7 @@ public class Employer {
     private String id;
     @SerializedName("trusted")
     @Expose
-    private Boolean trusted;
+    private boolean trusted;
 
     public LogoUrls getLogoUrls() {
         return logoUrls;

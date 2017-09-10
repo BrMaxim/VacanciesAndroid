@@ -1,4 +1,4 @@
-package by.maximoc.vacanciesandroid;
+package by.maximoc.vacanciesandroid.utils;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;

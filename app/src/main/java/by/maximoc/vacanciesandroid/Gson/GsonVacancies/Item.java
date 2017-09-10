@@ -3,9 +3,9 @@ package by.maximoc.vacanciesandroid.Gson.GsonVacancies;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import io.realm.RealmObject;
 
-public class Item {
+public class Item extends RealmObject {
 
     @SerializedName("salary")
     @Expose
@@ -22,15 +22,12 @@ public class Item {
     @SerializedName("published_at")
     @Expose
     private String publishedAt;
-    @SerializedName("relations")
-    @Expose
-    private List<Object> relations = null;
     @SerializedName("employer")
     @Expose
     private Employer employer;
     @SerializedName("response_letter_required")
     @Expose
-    private Boolean responseLetterRequired;
+    private boolean responseLetterRequired;
     @SerializedName("address")
     @Expose
     private Address address;
@@ -91,14 +88,6 @@ public class Item {
 
     public void setPublishedAt(String publishedAt) {
         this.publishedAt = publishedAt;
-    }
-
-    public List<Object> getRelations() {
-        return relations;
-    }
-
-    public void setRelations(List<Object> relations) {
-        this.relations = relations;
     }
 
     public Employer getEmployer() {

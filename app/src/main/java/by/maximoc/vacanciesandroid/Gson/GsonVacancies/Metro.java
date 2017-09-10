@@ -3,7 +3,9 @@ package by.maximoc.vacanciesandroid.Gson.GsonVacancies;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Metro {
+import io.realm.RealmObject;
+
+public class Metro extends RealmObject {
 
     @SerializedName("line_name")
     @Expose
@@ -16,13 +18,13 @@ public class Metro {
     private String lineId;
     @SerializedName("lat")
     @Expose
-    private Float lat;
+    private float lat;
     @SerializedName("station_name")
     @Expose
     private String stationName;
     @SerializedName("lng")
     @Expose
-    private Float lng;
+    private float lng;
 
     public String getLineName() {
         return lineName;

@@ -1,24 +1,23 @@
-package by.maximoc.vacanciesandroid.View;
+package by.maximoc.vacanciesandroid.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 
-import by.maximoc.vacanciesandroid.Adapter.VacanciesAdapter;
-import by.maximoc.vacanciesandroid.Constants;
+import by.maximoc.vacanciesandroid.ui.adapter.VacanciesAdapter;
+import by.maximoc.vacanciesandroid.utils.Constants;
 import by.maximoc.vacanciesandroid.Gson.GsonVacancies.Vacancies;
 import by.maximoc.vacanciesandroid.Presenter.VacanciesPresenter;
 import by.maximoc.vacanciesandroid.Presenter.VacanciesPresenterImpl;
 import by.maximoc.vacanciesandroid.R;
-import by.maximoc.vacanciesandroid.RxScrolling;
-import io.reactivex.Observer;
+import by.maximoc.vacanciesandroid.utils.RxScrolling;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 
 public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresenter> implements MainActivityView {
 
@@ -53,35 +52,19 @@ public class MainActivity extends MvpActivity<MainActivityView, VacanciesPresent
     }
 
     private void scrollListener() {
-        new RxScrolling().getScrollObservable(recyclerView, 0, layoutManager)
+        RxScrolling.getScrollObservable(recyclerView, 0, layoutManager)
                 .distinctUntilChanged()
-                .subscribe(new Observer<Integer>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        composite.add(d);
-                    }
-
-                    @Override
-                    public void onNext(Integer page) {
-                        getPresenter().getVacancies(String.valueOf(page));
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+                .subscribe(
+                        page -> getPresenter().getVacancies(String.valueOf(page)),
+                        throwable -> Log.d("TAG", "ScrollError"),
+                        () -> Log.d("TAG", "Done"),
+                        disposable -> composite.add(disposable));
     }
 
 
     private void adapterClickListener() {
         adapter.setClickListener(urlVacancy -> {
-            presenter.elementClick(urlVacancy);
+            presenter.itemClick(urlVacancy);
         });
     }
 

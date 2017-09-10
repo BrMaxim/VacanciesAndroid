@@ -4,7 +4,7 @@ import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 
 import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Address;
 import by.maximoc.vacanciesandroid.Gson.GsonVacancy.Salary;
-import by.maximoc.vacanciesandroid.View.VacancyDetailView;
+import by.maximoc.vacanciesandroid.ui.VacancyDetailView;
 
 public interface VacancyDetailPresenter extends MvpPresenter<VacancyDetailView> {
 
