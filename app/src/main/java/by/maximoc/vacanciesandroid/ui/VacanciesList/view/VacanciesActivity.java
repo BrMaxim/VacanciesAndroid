@@ -17,14 +17,12 @@ import by.maximoc.vacanciesandroid.ui.VacanciesList.presenter.IVacanciesPresente
 import by.maximoc.vacanciesandroid.ui.VacanciesList.presenter.VacanciesPresenter;
 import by.maximoc.vacanciesandroid.utils.Constants;
 import by.maximoc.vacanciesandroid.utils.RxScrolling;
-import io.reactivex.disposables.CompositeDisposable;
 
 public class VacanciesActivity extends MvpActivity<IVacanciesView, IVacanciesPresenter> implements IVacanciesView {
 
     private RecyclerView recyclerView;
     private VacanciesAdapter adapter;
     private LinearLayoutManager layoutManager;
-    private CompositeDisposable composite = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,13 +72,12 @@ public class VacanciesActivity extends MvpActivity<IVacanciesView, IVacanciesPre
     @Override
     public void showError() {
         if (!presenter.isAccessToInternet())
-            Toast.makeText(this, "Нет доступа к сети", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.vacancies_wrong, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        composite.dispose();
         if (getPresenter() != null) {
             getPresenter().onDestroy(adapter.getVacancies());
         }

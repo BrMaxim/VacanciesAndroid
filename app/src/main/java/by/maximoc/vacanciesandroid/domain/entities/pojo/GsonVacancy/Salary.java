@@ -7,7 +7,7 @@ public class Salary {
 
     @SerializedName("to")
     @Expose
-    private Object to;
+    private Integer to;
     @SerializedName("from")
     @Expose
     private Integer from;
@@ -15,11 +15,11 @@ public class Salary {
     @Expose
     private String currency;
 
-    public Object getTo() {
+    public Integer getTo() {
         return to;
     }
 
-    public void setTo(Object to) {
+    public void setTo(Integer to) {
         this.to = to;
     }
 

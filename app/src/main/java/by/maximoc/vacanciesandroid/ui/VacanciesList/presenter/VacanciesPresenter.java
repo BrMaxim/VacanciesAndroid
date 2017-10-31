@@ -26,6 +26,7 @@ public class VacanciesPresenter extends MvpBasePresenter<IVacanciesView> impleme
     private static final String COUNT_ITEM_PAGE = "per_page";
     private static final String PAGE = "page";
     private static final String VACANCIES_SORT = "relevance";
+    private static final int PERIOD = 30;
 
     public VacanciesPresenter(Context context) {
         model = new VacanciesInteractor(context, new VacanciesNetwork());
@@ -37,7 +38,7 @@ public class VacanciesPresenter extends MvpBasePresenter<IVacanciesView> impleme
         countPage.put(COUNT_ITEM_PAGE, String.valueOf(Constants.COUNT_PER_PAGE));
         countPage.put(PAGE, page);
 
-        model.getVacanciesModel(KEY_WORD_VACANCY, KEY_NUM_MINSK, VACANCIES_SORT, 30, countPage)
+        model.getVacanciesModel(KEY_WORD_VACANCY, KEY_NUM_MINSK, VACANCIES_SORT, PERIOD, countPage)
                 .subscribe(vacancies -> getView().addDataToAdapter(vacancies),
                         throwable -> getView().showError());
     }
