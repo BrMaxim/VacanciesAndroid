@@ -30,7 +30,6 @@ public class VacancyDetailInteractor implements IVacancyDetailInteractor {
         ConnectivityManager cm =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-
         return activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
     }

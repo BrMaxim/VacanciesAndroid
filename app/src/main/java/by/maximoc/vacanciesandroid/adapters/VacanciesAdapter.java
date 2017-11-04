@@ -22,8 +22,7 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
         return vacancies;
     }
 
-
-    public static interface Listener {
+    public interface Listener {
         void onClick(String urlVacancy);
     }
 

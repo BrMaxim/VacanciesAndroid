@@ -1,4 +1,4 @@
-package by.maximoc.vacanciesandroid.ui.VacanciesList.presenter;
+package by.maximoc.vacanciesandroid.presentation.VacanciesList.presenter;
 
 
 import android.content.Context;
@@ -11,7 +11,7 @@ import java.util.Map;
 import by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Vacancies;
 import by.maximoc.vacanciesandroid.domain.interactors.vacanciesList.VacanciesInteractor;
 import by.maximoc.vacanciesandroid.repositories.network.VacanciesNetwork;
-import by.maximoc.vacanciesandroid.ui.VacanciesList.view.IVacanciesView;
+import by.maximoc.vacanciesandroid.presentation.VacanciesList.view.IVacanciesView;
 import by.maximoc.vacanciesandroid.utils.Constants;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -27,18 +27,24 @@ public class VacanciesPresenter extends MvpBasePresenter<IVacanciesView> impleme
     private static final String PAGE = "page";
     private static final String VACANCIES_SORT = "relevance";
     private static final int PERIOD = 30;
+    private Map<String, String> countPage;
 
     public VacanciesPresenter(Context context) {
         model = new VacanciesInteractor(context, new VacanciesNetwork());
+        countPage = new HashMap<>();
     }
 
     @Override
     public void getVacancies(String page) {
-        Map<String, String> countPage = new HashMap<>();
         countPage.put(COUNT_ITEM_PAGE, String.valueOf(Constants.COUNT_PER_PAGE));
         countPage.put(PAGE, page);
 
         model.getVacanciesModel(KEY_WORD_VACANCY, KEY_NUM_MINSK, VACANCIES_SORT, PERIOD, countPage)
+                .doOnSubscribe(disposable -> {
+                    composite.add(disposable);
+                    getView().showProgressBar();
+                })
+                .doAfterTerminate(getView()::hideProgressBar)
                 .subscribe(vacancies -> getView().addDataToAdapter(vacancies),
                         throwable -> getView().showError());
     }
@@ -48,8 +54,9 @@ public class VacanciesPresenter extends MvpBasePresenter<IVacanciesView> impleme
         if (model.isAccessToInternet() && vacancies != null) {
             model.setVacanciesToDb(vacancies);
         }
-        if (!composite.isDisposed())
-            composite.dispose();
+        if (!composite.isDisposed()) {
+            composite.clear();
+        }
     }
 
     @Override

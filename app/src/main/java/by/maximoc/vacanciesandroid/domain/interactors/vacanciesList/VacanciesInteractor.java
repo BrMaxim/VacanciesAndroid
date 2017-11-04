@@ -45,7 +45,6 @@ public class VacanciesInteractor implements IVacanciesInteractor {
         realm = getDefaultInstance();
         realm.executeTransactionAsync(realm1 -> {
             realm1.deleteAll();
-            Vacancies vacancies = new Vacancies();
             realm1.insertOrUpdate(allVacancies);
         });
     }

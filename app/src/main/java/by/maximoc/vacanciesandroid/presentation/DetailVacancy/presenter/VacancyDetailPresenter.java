@@ -1,4 +1,4 @@
-package by.maximoc.vacanciesandroid.ui.DetailVacancy.presenter;
+package by.maximoc.vacanciesandroid.presentation.DetailVacancy.presenter;
 
 
 import android.content.Context;
@@ -9,7 +9,7 @@ import by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Address;
 import by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Salary;
 import by.maximoc.vacanciesandroid.domain.interactors.detailVacancy.VacancyDetailInteractor;
 import by.maximoc.vacanciesandroid.repositories.network.VacancyDetailNetwork;
-import by.maximoc.vacanciesandroid.ui.DetailVacancy.view.IVacancyDetailView;
+import by.maximoc.vacanciesandroid.presentation.DetailVacancy.view.IVacancyDetailView;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class VacancyDetailPresenter extends MvpBasePresenter<IVacancyDetailView> implements IVacancyDetailPresenter {
@@ -25,12 +25,13 @@ public class VacancyDetailPresenter extends MvpBasePresenter<IVacancyDetailView>
     public void getDetailInfo(String idVacancy) {
 
         interactor.getVacancyDetailModel(idVacancy)
+                .doOnSubscribe(disposable -> {
+                    composite.add(disposable);
+                    getView().showProgressBar();
+                })
+                .doAfterTerminate(getView()::hideProgressBar)
                 .subscribe(vacancy -> getView().showDetail(vacancy),
-                        throwable -> {
-                            if (!interactor.isAccessToInternet()) {
-                                getView().showError();
-                            }
-                        });
+                        throwable -> getView().showError(throwable.getLocalizedMessage()));
     }
 
     @Override
@@ -41,6 +42,13 @@ public class VacancyDetailPresenter extends MvpBasePresenter<IVacancyDetailView>
     @Override
     public String getSalaryString(Salary salary) {
         return interactor.createStringSalary(salary);
+    }
+
+    @Override
+    public void onStop() {
+        if (!composite.isDisposed()) {
+            composite.clear();
+        }
     }
 
 }
