@@ -1,4 +1,4 @@
-package by.maximoc.vacanciesandroid.service;
+package by.maximoc.vacanciesandroid.data.network;
 
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

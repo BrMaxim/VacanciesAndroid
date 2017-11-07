@@ -3,4 +3,6 @@
     <string name="description_vacancies">Стринговый ресурс. Наши пожелания к знаниям, навыкам и опыту кандидата: Опыт разработки под Android от одного года, уверенные знания платформы Android 4</string>
     <string name="salary">З/п не указана</string>
     <string name="vacancies_wrong">Нет доступа к сети</string>
+    <string name="error_handling_timeout">Превышено время подключения</string>
+    <string name="error_handling_network_error">Отсутствует интернет подключение</string>
 </resources>

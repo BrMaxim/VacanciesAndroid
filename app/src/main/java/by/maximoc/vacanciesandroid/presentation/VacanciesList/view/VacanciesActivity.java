@@ -14,11 +14,9 @@ import com.hannesdorfmann.mosby.mvp.MvpActivity;
 import by.maximoc.vacanciesandroid.R;
 import by.maximoc.vacanciesandroid.adapters.VacanciesAdapter;
 import by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Vacancies;
-import by.maximoc.vacanciesandroid.presentation.DetailVacancy.view.VacancyDetailActivity;
 import by.maximoc.vacanciesandroid.presentation.VacanciesList.presenter.IVacanciesPresenter;
 import by.maximoc.vacanciesandroid.presentation.VacanciesList.presenter.VacanciesPresenter;
-import by.maximoc.vacanciesandroid.utils.Constants;
-import by.maximoc.vacanciesandroid.utils.RxScrolling;
+import by.maximoc.vacanciesandroid.utils.EndlessScrollListener;
 
 public class VacanciesActivity extends MvpActivity<IVacanciesView, IVacanciesPresenter> implements IVacanciesView {
 
@@ -26,6 +24,7 @@ public class VacanciesActivity extends MvpActivity<IVacanciesView, IVacanciesPre
     private VacanciesAdapter adapter;
     private LinearLayoutManager layoutManager;
     private ProgressBar progress;
+    private EndlessScrollListener scrollListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +36,12 @@ public class VacanciesActivity extends MvpActivity<IVacanciesView, IVacanciesPre
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new VacanciesAdapter(null);
+        adapter = new VacanciesAdapter();
         recyclerView.setAdapter(adapter);
 
+        presenter.getVacancies("0");
+
+        adapterClickListener();
         scrollListener();
     }
 
@@ -52,13 +54,21 @@ public class VacanciesActivity extends MvpActivity<IVacanciesView, IVacanciesPre
     @Override
     public void addDataToAdapter(Vacancies vacancies) {
         adapter.updateAdapter(vacancies);
-        adapterClickListener();
+    }
+
+    @Override
+    public void showError(String throwable) {
+        Toast.makeText(this, R.string.vacancies_wrong, Toast.LENGTH_SHORT).show();
     }
 
     private void scrollListener() {
-        RxScrolling.getScrollObservable(recyclerView, 0, layoutManager)
-                .distinctUntilChanged()
-                .subscribe(page -> getPresenter().getVacancies(String.valueOf(page)));
+        recyclerView.addOnScrollListener(new EndlessScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                presenter.getVacancies(String.valueOf(page));
+            }
+        });
+
     }
 
 
@@ -69,16 +79,8 @@ public class VacanciesActivity extends MvpActivity<IVacanciesView, IVacanciesPre
     }
 
     @Override
-    public void startDetailActivity(String urlVacancy) {
-        Intent intent = new Intent(this, VacancyDetailActivity.class);
-        intent.putExtra(Constants.URL_VACANCY, urlVacancy);
+    public void startDetailActivity(Intent intent) {
         startActivity(intent);
-    }
-
-    @Override
-    public void showError() {
-        if (!presenter.isAccessToInternet())
-            Toast.makeText(this, R.string.vacancies_wrong, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -92,10 +94,10 @@ public class VacanciesActivity extends MvpActivity<IVacanciesView, IVacanciesPre
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         if (getPresenter() != null) {
-            getPresenter().onDestroy(adapter.getVacancies());
+            getPresenter().onStop();
         }
     }
 }

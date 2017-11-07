@@ -7,7 +7,7 @@ import android.net.NetworkInfo;
 import by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Address;
 import by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Salary;
 import by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy;
-import by.maximoc.vacanciesandroid.repositories.IVacancyDetailRepository;
+import by.maximoc.vacanciesandroid.data.repositories.IVacancyDetailRepository;
 import io.reactivex.Single;
 
 public class VacancyDetailInteractor implements IVacancyDetailInteractor {

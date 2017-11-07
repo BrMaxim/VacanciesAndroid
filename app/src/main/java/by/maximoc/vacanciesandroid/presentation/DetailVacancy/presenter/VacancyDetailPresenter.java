@@ -8,16 +8,19 @@ import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Address;
 import by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Salary;
 import by.maximoc.vacanciesandroid.domain.interactors.detailVacancy.VacancyDetailInteractor;
-import by.maximoc.vacanciesandroid.repositories.network.VacancyDetailNetwork;
+import by.maximoc.vacanciesandroid.data.repositories.VacancyDetailNetwork;
 import by.maximoc.vacanciesandroid.presentation.DetailVacancy.view.IVacancyDetailView;
+import by.maximoc.vacanciesandroid.utils.ThrowableResolver;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class VacancyDetailPresenter extends MvpBasePresenter<IVacancyDetailView> implements IVacancyDetailPresenter {
 
     private VacancyDetailInteractor interactor;
-    final CompositeDisposable composite = new CompositeDisposable();
+    private CompositeDisposable composite = new CompositeDisposable();
+    private Context context;
 
     public VacancyDetailPresenter(Context context) {
+        this.context = context;
         interactor = new VacancyDetailInteractor(context, new VacancyDetailNetwork());
     }
 
@@ -31,7 +34,7 @@ public class VacancyDetailPresenter extends MvpBasePresenter<IVacancyDetailView>
                 })
                 .doAfterTerminate(getView()::hideProgressBar)
                 .subscribe(vacancy -> getView().showDetail(vacancy),
-                        throwable -> getView().showError(throwable.getLocalizedMessage()));
+                        throwable -> getView().showError(ThrowableResolver.handleError(throwable, context)));
     }
 
     @Override

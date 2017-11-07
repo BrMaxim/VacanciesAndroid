@@ -10,6 +10,4 @@ public interface IVacanciesInteractor {
 
     Single<Vacancies> getVacanciesModel(String keyWord, String location, String sort,
                                         int period, Map<String, String> page);
-
-    boolean isAccessToInternet();
 }

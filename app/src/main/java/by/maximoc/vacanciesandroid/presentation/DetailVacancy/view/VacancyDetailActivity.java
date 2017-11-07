@@ -1,5 +1,7 @@
 package by.maximoc.vacanciesandroid.presentation.DetailVacancy.view;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -28,6 +30,12 @@ public class VacancyDetailActivity extends MvpActivity<IVacancyDetailView, IVaca
     private String idVacancy;
     private LinearLayout allVacancyView;
     private ProgressBar progress;
+
+    public static Intent getVacancyIntent(Context context, String urlVacancy){
+        Intent intent = new Intent(context, VacancyDetailActivity.class);
+        intent.putExtra(Constants.URL_VACANCY, urlVacancy);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

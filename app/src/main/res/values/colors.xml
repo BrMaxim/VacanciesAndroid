@@ -14,4 +14,6 @@
     <color name="colorDescriptions">#2b2b2b</color>
     <color name="colorCompany">#868584</color>
     <color name="colorDate">#616160</color>
+
+    <color name="colorSplashBackground">#646667</color>
 </resources>

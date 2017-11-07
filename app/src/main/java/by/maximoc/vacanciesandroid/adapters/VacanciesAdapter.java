@@ -7,20 +7,20 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import by.maximoc.vacanciesandroid.utils.StringHtmlFormat;
-import by.maximoc.vacanciesandroid.utils.DateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import by.maximoc.vacanciesandroid.R;
+import by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item;
 import by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Salary;
 import by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Vacancies;
-import by.maximoc.vacanciesandroid.R;
+import by.maximoc.vacanciesandroid.utils.DateFormat;
+import by.maximoc.vacanciesandroid.utils.StringHtmlFormat;
 
 public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.ViewHolder> {
 
-    private Vacancies vacancies;
     private Listener clickListener;
-
-    public Vacancies getVacancies() {
-        return vacancies;
-    }
+    private List<Item> items;
 
     public interface Listener {
         void onClick(String urlVacancy);
@@ -30,17 +30,18 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
         this.clickListener = clickListener;
     }
 
-    public VacanciesAdapter(Vacancies vacancies) {
-        this.vacancies = vacancies;
+    public VacanciesAdapter() {
+        items = new ArrayList<>();
     }
 
     public void updateAdapter(Vacancies vacancies) {
-        if (this.vacancies == null)
-            this.vacancies = vacancies;
-        else {
-            this.vacancies.getItems().addAll(vacancies.getItems());
+        if (this.items == null) {
+            this.items = vacancies.getItems();
         }
-        notifyItemRangeInserted(getItemCount(), getItemCount() + vacancies.getItems().size());
+        else if (vacancies != null){
+            this.items.addAll(vacancies.getItems());
+        }
+        notifyItemRangeInserted(getItemCount(), getItemCount() + items.size());
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -72,32 +73,35 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
     @Override
     public void onBindViewHolder(VacanciesAdapter.ViewHolder holder, int position) {
         final LinearLayout layout = holder.linearLayout;
-        holder.nameVacancies.setText(vacancies.getItems().get(position).getName());
-        if (vacancies.getItems().get(position).getSnippet().getRequirement() != null) {
-            holder.descriptionVacancies
-                    .setText(new StringHtmlFormat().fromHtml(vacancies.getItems().get(position).getSnippet().getRequirement()));
-        }
-        holder.companyVacancies.setText(vacancies.getItems().get(position).getEmployer().getName());
-        holder.cityVacancies.setText(vacancies.getItems().get(position).getArea().getName());
-        holder.dateVacancies.setText(DateFormat.createData(vacancies.getItems().get(position).getPublishedAt()));
+        holder.nameVacancies.setText(items.get(position).getName());
 
-        if (vacancies.getItems().get(position).getSalary() != null) {
-            holder.salaryVacancies.setText(createStringSalary(vacancies.getItems().get(position).getSalary()));
+        if (items.get(position).getSnippet().getRequirement() != null) {
+            holder.descriptionVacancies
+                    .setText(new StringHtmlFormat().fromHtml(items.get(position).getSnippet().getRequirement()));
+        }
+        holder.companyVacancies.setText(items.get(position).getEmployer().getName());
+
+        holder.cityVacancies.setText(items.get(position).getArea().getName());
+
+        holder.dateVacancies.setText(DateFormat.createData(items.get(position).getPublishedAt()));
+
+        if (items.get(position).getSalary() != null) {
+            holder.salaryVacancies.setText(createStringSalary(items.get(position).getSalary()));
         } else {
             holder.salaryVacancies.setText(R.string.salary);
         }
 
-        if (vacancies.getItems().get(position).getAddress() != null
-                && vacancies.getItems().get(position).getAddress().getMetro() != null) {
+        if (items.get(position).getAddress() != null
+                && items.get(position).getAddress().getMetro() != null) {
             holder.subwayVacancies.setVisibility(View.VISIBLE);
-            holder.subwayVacancies.setText(vacancies.getItems().get(position).getAddress().getMetro().getStationName());
+            holder.subwayVacancies.setText(items.get(position).getAddress().getMetro().getStationName());
         } else {
             holder.subwayVacancies.setVisibility(View.GONE);
         }
 
         layout.setOnClickListener(v -> {
             if (clickListener != null)
-                clickListener.onClick(vacancies.getItems().get(position).getId());
+                clickListener.onClick(items.get(position).getId());
         });
     }
 
@@ -113,8 +117,8 @@ public class VacanciesAdapter extends RecyclerView.Adapter<VacanciesAdapter.View
 
     @Override
     public int getItemCount() {
-        if (vacancies != null) {
-            return vacancies.getItems().size();
+        if (items != null) {
+            return items.size();
         } else {
             return 0;
         }

@@ -1,4 +1,4 @@
-package by.maximoc.vacanciesandroid.service;
+package by.maximoc.vacanciesandroid.data.network;
 
 import java.util.Map;
 

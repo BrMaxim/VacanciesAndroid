@@ -14,14 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.VacanciesList.view.VacanciesActivity">
+        <activity android:name=".presentation.VacanciesList.view.VacanciesActivity" />
+        <activity android:name=".presentation.DetailVacancy.view.VacancyDetailActivity" />
+        <activity
+            android:name=".presentation.SplashActivity"
+            android:noHistory="true"
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.DetailVacancy.view.VacancyDetailActivity"></activity>
     </application>
 
 </manifest>

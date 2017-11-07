@@ -13,7 +13,7 @@ public class Application extends android.app.Application {
         long DATABASE_VER = 1;
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .schemaVersion(DATABASE_VER)
-                .name("VacanciesDB")
+                .name("VacanciesLocalStorage")
                 .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(config);

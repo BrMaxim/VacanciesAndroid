@@ -1,8 +1,7 @@
-package by.maximoc.vacanciesandroid.repositories.network;
+package by.maximoc.vacanciesandroid.data.repositories;
 
+import by.maximoc.vacanciesandroid.data.network.ServiceFactory;
 import by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy;
-import by.maximoc.vacanciesandroid.repositories.IVacancyDetailRepository;
-import by.maximoc.vacanciesandroid.service.ServiceFactory;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

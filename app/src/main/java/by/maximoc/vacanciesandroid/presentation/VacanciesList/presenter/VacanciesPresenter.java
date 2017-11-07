@@ -2,17 +2,21 @@ package by.maximoc.vacanciesandroid.presentation.VacanciesList.presenter;
 
 
 import android.content.Context;
+import android.util.Log;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Vacancies;
+import by.maximoc.vacanciesandroid.data.dataBase.VacanciesDataBase;
+import by.maximoc.vacanciesandroid.data.repositories.VacanciesDataRepository;
+import by.maximoc.vacanciesandroid.data.repositories.vacancies.VacanciesDataStoreFactory;
 import by.maximoc.vacanciesandroid.domain.interactors.vacanciesList.VacanciesInteractor;
-import by.maximoc.vacanciesandroid.repositories.network.VacanciesNetwork;
+import by.maximoc.vacanciesandroid.presentation.DetailVacancy.view.VacancyDetailActivity;
 import by.maximoc.vacanciesandroid.presentation.VacanciesList.view.IVacanciesView;
 import by.maximoc.vacanciesandroid.utils.Constants;
+import by.maximoc.vacanciesandroid.utils.ThrowableResolver;
 import io.reactivex.disposables.CompositeDisposable;
 
 import static by.maximoc.vacanciesandroid.utils.Constants.KEY_NUM_MINSK;
@@ -21,52 +25,49 @@ import static by.maximoc.vacanciesandroid.utils.Constants.KEY_WORD_VACANCY;
 
 public class VacanciesPresenter extends MvpBasePresenter<IVacanciesView> implements IVacanciesPresenter {
 
-    private VacanciesInteractor model;
+    private VacanciesInteractor interactor;
+    private Context context;
     private CompositeDisposable composite = new CompositeDisposable();
     private static final String COUNT_ITEM_PAGE = "per_page";
-    private static final String PAGE = "page";
     private static final String VACANCIES_SORT = "relevance";
     private static final int PERIOD = 30;
     private Map<String, String> countPage;
 
     public VacanciesPresenter(Context context) {
-        model = new VacanciesInteractor(context, new VacanciesNetwork());
+        this.context = context;
+        interactor = new VacanciesInteractor(new VacanciesDataRepository
+                (new VacanciesDataStoreFactory(new VacanciesDataBase(), context)));
         countPage = new HashMap<>();
+        countPage.put(COUNT_ITEM_PAGE, String.valueOf(Constants.COUNT_PER_PAGE));
     }
 
     @Override
     public void getVacancies(String page) {
-        countPage.put(COUNT_ITEM_PAGE, String.valueOf(Constants.COUNT_PER_PAGE));
-        countPage.put(PAGE, page);
+        countPage.put(Constants.PAGE, page);
 
-        model.getVacanciesModel(KEY_WORD_VACANCY, KEY_NUM_MINSK, VACANCIES_SORT, PERIOD, countPage)
+        interactor.getVacanciesModel(KEY_WORD_VACANCY, KEY_NUM_MINSK, VACANCIES_SORT, PERIOD, countPage)
                 .doOnSubscribe(disposable -> {
                     composite.add(disposable);
                     getView().showProgressBar();
                 })
                 .doAfterTerminate(getView()::hideProgressBar)
-                .subscribe(vacancies -> getView().addDataToAdapter(vacancies),
-                        throwable -> getView().showError());
+                .subscribe(vacancies -> {
+                            Log.d("TAG", "Page "+vacancies.getPage());
+                    getView().addDataToAdapter(vacancies);},
+                        throwable -> getView().showError(ThrowableResolver.handleError(throwable, context)));
     }
 
     @Override
-    public void onDestroy(Vacancies vacancies) {
-        if (model.isAccessToInternet() && vacancies != null) {
-            model.setVacanciesToDb(vacancies);
-        }
+    public void onStop() {
         if (!composite.isDisposed()) {
             composite.clear();
         }
     }
 
     @Override
-    public boolean isAccessToInternet() {
-        return model.isAccessToInternet();
-    }
-
-    @Override
     public void itemClick(String urlVacancy) {
-        if (isViewAttached())
-            getView().startDetailActivity(urlVacancy);
+        if (isViewAttached()) {
+            getView().startDetailActivity(VacancyDetailActivity.getVacancyIntent(context, urlVacancy));
+        }
     }
 }
