@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
     android:background="?attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/name_vacancies"
-        android:text="Android developer"
-        android:textSize="16dp"
+        tools:text="Android developer"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/colorVacancies"
         android:layout_width="wrap_content"
@@ -18,7 +18,7 @@
 
     <TextView
         android:id="@+id/salary"
-        android:text="@string/salary"
+        tools:text="От 2000$"
         android:textStyle="italic"
         android:textColor="@color/colorPrimaryDark"
         android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
     <TextView
         android:id="@+id/descriptions_vacancies"
         android:maxLines="2"
-        android:text="@string/description_vacancies"
+        tools:text="Вакансия android разработчика"
         android:textColor="@color/colorDescriptions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -38,7 +38,7 @@
         android:id="@+id/company_vacancies"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
-        android:text="Google Inc."
+        tools:text="Google Inc."
         android:textColor="@color/colorCompany"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -49,21 +49,21 @@
         android:layout_marginBottom="8dp">
         <TextView
             android:id="@+id/city"
-            android:text="Минск"
-            android:layout_marginRight="8dp"
+            tools:text="Минск"
+            android:layout_marginEnd="8dp"
             android:textColor="@color/colorDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/subway"
-            android:text="Петровщина"
-            android:layout_marginRight="8dp"
+            tools:text="Петровщина"
+            android:layout_marginEnd="8dp"
             android:textColor="@color/colorDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/date"
-            android:text="12 апреля"
+            tools:text="12 апреля"
             android:textColor="@color/colorDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

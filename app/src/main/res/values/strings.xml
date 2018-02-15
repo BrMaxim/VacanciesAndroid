@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">Android vacancies</string>
-    <string name="description_vacancies">Стринговый ресурс. Наши пожелания к знаниям, навыкам и опыту кандидата: Опыт разработки под Android от одного года, уверенные знания платформы Android 4</string>
-    <string name="salary">З/п не указана</string>
-    <string name="vacancies_wrong">Нет доступа к сети</string>
-    <string name="error_handling_timeout">Превышено время подключения</string>
-    <string name="error_handling_network_error">Отсутствует интернет подключение</string>
+    <string name="vacancy_salary">З/п не указана</string>
+    <string name="vacancy_address">Адрес не указан</string>
+    <string name="error_timeout">Превышено время подключения</string>
+    <string name="error_network">Отсутствует интернет подключение</string>
+    <string name="format_salary_from">От %d </string>
+    <string formatted="false" name="format_salary_to">%s До %d</string>
+    <string formatted="false" name="format_two_string">%s %s</string>
+    <string name="vacancy_detail_employment">Тип зянятости:</string>
+    <string name="vacancy_detail_experience">Требуемый опыт:</string>
+    <string name="vacancy_detail_city">Город:</string>
 </resources>

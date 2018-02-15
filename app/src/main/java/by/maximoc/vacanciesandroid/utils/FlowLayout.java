@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import by.maximoc.vacanciesandroid.R;
 
 public class FlowLayout extends ViewGroup {
-    // padding bettwen elements
     private int PAD_H, PAD_V;
     private int mHeight;
 
@@ -18,17 +17,16 @@ public class FlowLayout extends ViewGroup {
         setPaddings(0, 0);
     }
 
-    protected void setPaddings(int V, int H) {
+    private void setPaddings(int V, int H) {
         PAD_H = 10;
         PAD_V = 10;
     }
 
-    protected void setPaddings(Context ctx, AttributeSet attrs) {
+    private void setPaddings(Context ctx, AttributeSet attrs) {
         TypedArray a = ctx
                 .obtainStyledAttributes(attrs, R.styleable.FlowLayout);
         String H = a.getString(R.styleable.FlowLayout_paddingH);
         String V = a.getString(R.styleable.FlowLayout_paddingV);
-// LOG.d("H = " + H + "V=" + V);
         if (H == null || V == null)
             setPaddings(V == null ? 0 : Integer.parseInt(V), H == null ? 0 : Integer.parseInt(H));
         else {

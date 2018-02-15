@@ -3,6 +3,10 @@ package by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import by.maximoc.vacanciesandroid.domain.entities.pojo.Address;
+import by.maximoc.vacanciesandroid.domain.entities.pojo.Area;
+import by.maximoc.vacanciesandroid.domain.entities.pojo.Salary;
+import by.maximoc.vacanciesandroid.domain.entities.pojo.Type;
 import io.realm.RealmObject;
 
 public class Item extends RealmObject {
@@ -49,6 +53,15 @@ public class Item extends RealmObject {
     @SerializedName("snippet")
     @Expose
     private Snippet snippet;
+    private String formatSalary;
+
+    public String getFormatSalary() {
+        return formatSalary;
+    }
+
+    public void setFormatSalary(String formatSalary) {
+        this.formatSalary = formatSalary;
+    }
 
     public Salary getSalary() {
         return salary;

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:t="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include layout="@layout/incl_view_progress"/>
+    <include layout="@layout/incl_circle_progress"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -12,6 +12,8 @@
 
         <LinearLayout
             android:id="@+id/all_vacancy_view"
+            android:visibility="gone"
+            tools:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -21,15 +23,15 @@
                 android:id="@+id/name_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Android developer"
-                android:textSize="18dp"
+                tools:text="Android developer"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/salary_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="З/п не указана"
+                tools:text="З/п не указана"
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="italic" />
 
@@ -41,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Город: "
+                    android:text="@string/vacancy_detail_city"
                     android:textStyle="bold" />
 
                 <TextView
@@ -49,7 +51,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Минск" />
+                    android:layout_marginStart="4dp"
+                    tools:text="Минск" />
             </LinearLayout>
 
             <LinearLayout
@@ -60,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Требуемый опыт: "
+                    android:text="@string/vacancy_detail_experience"
                     android:textStyle="bold" />
 
                 <TextView
@@ -68,7 +71,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="1 - 3 года" />
+                    android:layout_marginStart="4dp"
+                    tools:text="1 - 3 года" />
             </LinearLayout>
 
             <LinearLayout
@@ -79,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Тип зянятости: "
+                    android:text="@string/vacancy_detail_employment"
                     android:textStyle="bold" />
 
                 <TextView
@@ -87,7 +91,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Полный день" />
+                    android:layout_marginStart="4dp"
+                    tools:text="Полный день" />
             </LinearLayout>
 
             <View
@@ -102,28 +107,28 @@
                 android:id="@+id/company_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_business_black_24dp"
+                android:drawableStart="@drawable/ic_business_black_24dp"
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
-                android:text="Google Inc." />
+                tools:text="Google Inc." />
 
             <TextView
                 android:id="@+id/address_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_place_black_24dp"
+                android:drawableStart="@drawable/ic_place_black_24dp"
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
-                android:text="Адрес не указан" />
+                tools:text="Адрес не указан" />
 
             <TextView
                 android:id="@+id/subway_vacancy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_subway_black_24dp"
+                android:drawableStart="@drawable/ic_subway_black_24dp"
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
-                android:text="Немига"
+                tools:text="Немига"
                 android:visibility="gone" />
 
             <View
@@ -137,15 +142,14 @@
             <TextView
                 android:id="@+id/descriptions_vacancy"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/description_vacancies" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/key_skill"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-                android:text="Ключевые навыки"
+                tools:text="Ключевые навыки"
                 android:textStyle="bold"
                 android:visibility="gone" />
 
@@ -154,8 +158,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                t:paddingH="@integer/test_padding_h"
-                t:paddingV="@integer/test_padding_v" />
+                tools:paddingH="@integer/test_padding_h"
+                tools:paddingV="@integer/test_padding_v" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

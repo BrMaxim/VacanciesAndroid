@@ -1,10 +1,243 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EntryPointsManager">
-    <entry_points version="2.0" />
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="io.realm.annotations.Required" />
     </list>
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Address" method="setId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Address" method="getId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Address" method="setLng" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Address" method="getLng" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Address" method="setLat" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Address" method="getLat" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Address" method="setStreet" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Address" method="setMetroStations" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Address" method="getMetroStations" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Address" method="setMetro" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Address" method="setCity" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Address" method="getCity" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Address" method="setBuilding" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Address" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Area" method="setName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Area" method="setId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Area" method="getId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Area" method="setUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Area" method="getUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Area" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.BillingType" method="setName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.BillingType" method="getName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.BillingType" method="setId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.BillingType" method="getId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.BillingType" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Department" method="setName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Department" method="getName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Department" method="setId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Department" method="getId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Department" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employer" method="setTrusted" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employer" method="getTrusted" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employer" method="setId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employer" method="getId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employer" method="setAlternateUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employer" method="getAlternateUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employer" method="setUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employer" method="getUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employer" method="setName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employer" method="setVacanciesUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employer" method="getVacanciesUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employer" method="setLogoUrls" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employer" method="getLogoUrls" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employer" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Employer" method="setTrusted" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Employer" method="getTrusted" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Employer" method="setId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Employer" method="getId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Employer" method="setAlternateUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Employer" method="getAlternateUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Employer" method="setUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Employer" method="getUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Employer" method="setName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Employer" method="setLogoUrls" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Employer" method="getLogoUrls" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Employer" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employment" method="setName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employment" method="getName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employment" method="setId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employment" method="getId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Employment" />
+    <pattern value="by.maximoc.vacanciesandroid.utils.EndlessScrollListener" method="onLoadMore" />
+    <pattern value="by.maximoc.vacanciesandroid.utils.EndlessScrollListener" method="resetState" />
+    <pattern value="by.maximoc.vacanciesandroid.utils.EndlessScrollListener" method="EndlessScrollListener" />
+    <pattern value="by.maximoc.vacanciesandroid.utils.EndlessScrollListener" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Experience" method="setName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Experience" method="setId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Experience" method="getId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Experience" />
+    <pattern value="by.maximoc.vacanciesandroid.utils.FlowLayout" method="setPaddings" />
+    <pattern value="by.maximoc.vacanciesandroid.utils.FlowLayout" />
+    <pattern value="by.maximoc.vacanciesandroid.data.IRepository" method="cachedVacancies" />
+    <pattern value="by.maximoc.vacanciesandroid.data.IRepository" method="isCached" />
+    <pattern value="by.maximoc.vacanciesandroid.data.IRepository" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.interactors.vacanciesList.IVacanciesInteractor" method="getVacanciesModel" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.interactors.vacanciesList.IVacanciesInteractor" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.interactors.detailVacancy.IVacancyDetailInteractor" method="isAccessToInternet" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.interactors.detailVacancy.IVacancyDetailInteractor" method="getVacancyDetailModel" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.interactors.detailVacancy.IVacancyDetailInteractor" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="setSnippet" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="setId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="setType" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="getType" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="setDepartment" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="getDepartment" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="setApplyAlternateUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="getApplyAlternateUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="setAlternateUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="getAlternateUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="setAddress" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="setResponseLetterRequired" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="getResponseLetterRequired" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="setEmployer" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="setUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="getUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="setArea" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="setName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" method="setSalary" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Item" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.LogoUrls" method="setOriginal" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.LogoUrls" method="getOriginal" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.LogoUrls" method="set240" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.LogoUrls" method="get240" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.LogoUrls" method="set90" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.LogoUrls" method="get90" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.LogoUrls" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Metro" method="setLng" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Metro" method="getLng" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Metro" method="setStationName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Metro" method="setLat" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Metro" method="getLat" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Metro" method="setLineId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Metro" method="getLineId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Metro" method="setStationId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Metro" method="getStationId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Metro" method="setLineName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Metro" method="getLineName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Metro" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.MetroStation" method="setLng" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.MetroStation" method="getLng" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.MetroStation" method="setStationName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.MetroStation" method="getStationName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.MetroStation" method="setLat" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.MetroStation" method="getLat" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.MetroStation" method="setLineId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.MetroStation" method="getLineId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.MetroStation" method="setStationId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.MetroStation" method="getStationId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.MetroStation" method="setLineName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.MetroStation" method="getLineName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.MetroStation" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Salary" method="setCurrency" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Salary" method="setFrom" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Salary" method="setTo" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Salary" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Schedule" method="setName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Schedule" method="setId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Schedule" method="getId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Schedule" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Site" method="setName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Site" method="getName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Site" method="setId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Site" method="getId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Site" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Snippet" method="setResponsibility" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Snippet" method="getResponsibility" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Snippet" method="setRequirement" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Snippet" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Specialization" method="setName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Specialization" method="getName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Specialization" method="setId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Specialization" method="getId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Specialization" method="setProfareaName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Specialization" method="getProfareaName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Specialization" method="setProfareaId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Specialization" method="getProfareaId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Specialization" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Type" method="setName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Type" method="getName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Type" method="setId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Type" method="getId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.Type" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Vacancies" method="setFound" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Vacancies" method="getFound" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Vacancies" method="setPages" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Vacancies" method="getPages" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Vacancies" method="setPage" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Vacancies" method="getPage" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Vacancies" method="setItems" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Vacancies" method="setPerPage" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Vacancies" method="getPerPage" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.Vacancies" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setSpecializations" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getSpecializations" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setType" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getType" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setHidden" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getHidden" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setBrandedDescription" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getBrandedDescription" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setDepartment" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getDepartment" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setNegotiationsUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getNegotiationsUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setQuickResponsesAllowed" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getQuickResponsesAllowed" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setApplyAlternateUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getApplyAlternateUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setResponseLetterRequired" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getResponseLetterRequired" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setEmployer" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setRelations" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getRelations" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setArea" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setCreatedAt" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getCreatedAt" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setContacts" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getContacts" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setName" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setArchived" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getArchived" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setSalary" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setResponseUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getResponseUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getId" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setEmployment" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getEmployment" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setAllowMessages" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getAllowMessages" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setKeySkills" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setAddress" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setExperience" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setAcceptHandicapped" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getAcceptHandicapped" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setTest" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getTest" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setPublishedAt" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getPublishedAt" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setBillingType" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getBillingType" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setSite" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getSite" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setSuitableResumesUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getSuitableResumesUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setSchedule" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setDescription" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setPremium" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getPremium" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setCode" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getCode" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="setAlternateUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" method="getAlternateUrl" />
+    <pattern value="by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy.Vacancy" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />

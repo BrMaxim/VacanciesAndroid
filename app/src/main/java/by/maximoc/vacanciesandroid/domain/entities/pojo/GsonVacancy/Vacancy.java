@@ -5,6 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import by.maximoc.vacanciesandroid.domain.entities.pojo.Address;
+import by.maximoc.vacanciesandroid.domain.entities.pojo.Area;
+import by.maximoc.vacanciesandroid.domain.entities.pojo.Salary;
+import by.maximoc.vacanciesandroid.domain.entities.pojo.Type;
+
 public class Vacancy {
 
     @SerializedName("alternate_url")
@@ -112,6 +117,16 @@ public class Vacancy {
     @SerializedName("specializations")
     @Expose
     private List<Specialization> specializations = null;
+    private String formatSalary;
+    private String formatAddress;
+
+    public String getFormatSalary() {
+        return formatSalary;
+    }
+
+    public void setFormatSalary(String formatSalary) {
+        this.formatSalary = formatSalary;
+    }
 
     public String getAlternateUrl() {
         return alternateUrl;
@@ -391,6 +406,14 @@ public class Vacancy {
 
     public void setSpecializations(List<Specialization> specializations) {
         this.specializations = specializations;
+    }
+
+    public String getFormatAddress() {
+        return formatAddress;
+    }
+
+    public void setFormatAddress(String formatAddress) {
+        this.formatAddress = formatAddress;
     }
 }
 

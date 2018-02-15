@@ -3,6 +3,7 @@ package by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import by.maximoc.vacanciesandroid.domain.entities.pojo.LogoUrls;
 import io.realm.RealmObject;
 
 public class Employer extends RealmObject {

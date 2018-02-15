@@ -3,7 +3,7 @@ package by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Specialization {
+class Specialization {
 
     @SerializedName("profarea_id")
     @Expose

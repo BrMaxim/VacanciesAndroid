@@ -3,11 +3,13 @@ package by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancy;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import by.maximoc.vacanciesandroid.domain.entities.pojo.LogoUrls;
+
 public class Employer {
 
     @SerializedName("logo_urls")
     @Expose
-    private by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.LogoUrls logoUrls;
+    private LogoUrls logoUrls;
     @SerializedName("vacancies_url")
     @Expose
     private String vacanciesUrl;
@@ -27,11 +29,11 @@ public class Employer {
     @Expose
     private Boolean trusted;
 
-    public by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.LogoUrls getLogoUrls() {
+    public LogoUrls getLogoUrls() {
         return logoUrls;
     }
 
-    public void setLogoUrls(by.maximoc.vacanciesandroid.domain.entities.pojo.GsonVacancies.LogoUrls logoUrls) {
+    public void setLogoUrls(LogoUrls logoUrls) {
         this.logoUrls = logoUrls;
     }
 

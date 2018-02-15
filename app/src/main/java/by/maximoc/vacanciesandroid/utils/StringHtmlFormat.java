@@ -4,6 +4,7 @@ import android.text.Html;
 import android.text.Spanned;
 
 public class StringHtmlFormat {
+
     @SuppressWarnings("deprecation")
     public static Spanned fromHtml(String htmlFromMethod) {
         String wrapping = htmlFromMethod.replaceAll("\\<li> <p\\>", "<li>");
